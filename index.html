@@ -8,70 +8,81 @@
 
   <!-- Page-specific overrides -->
   <style>
-    /* Make BuffHome.png the full-page background */
-    body{
+    /* Full-page background image */
+    body {
       background:
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.70)),
-        url("/Buffalos/assets/img/BuffHome.png") center/cover no-repeat fixed !important;
+        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
+        url("/Buffalos/assets/img/BuffHome.png") center / cover no-repeat fixed;
     }
 
-    /* Banner above the main menu */
-    .site-banner{
-      text-align:center;
-      font-weight: 1000;
-      letter-spacing: 1.4px;
+    /* Banner above main menu */
+    .site-banner {
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
       font-size: 12px;
       padding: 10px 8px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.92);
-      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.95);
+      background: rgba(0,0,0,.35);
+      border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
-    /* Remove hero card/image block look; keep only the Register button area */
-    .hero{ padding: 18px 0 28px; }
-    .hero-card{
+    /* Remove hero card visuals */
+    .hero {
+      padding: 24px 0 40px;
+    }
+
+    .hero-card {
       background: transparent !important;
-      border: 0 !important;
+      border: none !important;
       box-shadow: none !important;
-      overflow: visible !important;
     }
-    .hero-bg{ display:none !important; }
-    .hero-card > img{ display:none !important; } /* hide the hero image since it's now the page background */
 
-    .hero-content{
+    .hero-bg,
+    .hero-card img,
+    .kicker,
+    .h1,
+    .mini-note {
+      display: none !important;
+    }
+
+    /* Center Register button */
+    .hero-content {
       position: relative !important;
       inset: auto !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 0 !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
     }
-    .hero-content .kicker,
-    .hero-content .h1,
-    .hero-content .mini-note{ display:none !important; }
 
-    /* Keep only Register Now button; center it */
-    .cta-row{
-      justify-content: center !important;
-      width: 100%;
-      margin-top: 12px;
+    .cta-row {
+      justify-content: center;
     }
-    .cta-row .btn:not(.primary){ display:none !important; }
 
-    /* Optional: hide the below content + footer to keep it clean */
-    .section{ display:none !important; }
-    .footer{ display:none !important; }
+    .cta-row .btn:not(.primary) {
+      display: none !important;
+    }
+
+    /* Optional: hide lower sections & footer for clean landing page */
+    .section,
+    .footer {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
-  <!-- Header (reuse on every page) -->
+
+  <!-- Header -->
   <header class="topbar camo">
     <div class="container">
 
-      <!-- NEW banner above the main menu -->
-      <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
+      <!-- Banner -->
+      <div class="site-banner">
+        GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+      </div>
 
       <div class="topbar-inner">
         <a class="brand" href="index.html" aria-label="GNMFA Home">
@@ -90,7 +101,8 @@
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
+          <a class="btn primary" href="registration.html"
+             style="padding:12px 14px;border-radius:14px;">Register</a>
 
           <button class="icon-btn mobile-toggle" type="button"
                   aria-label="Open menu" aria-expanded="false"
@@ -109,67 +121,25 @@
         <a href="registration.html">Registration</a>
         <a href="directions.html">Directions</a>
       </div>
+
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Main -->
   <main>
     <section class="hero">
       <div class="container">
         <div class="hero-card">
-          <div class="hero-bg"></div>
-          <img src="/Buffalos/assets/img/BuffHome.png" alt="Buffalo football player hero" />
-
-          <!-- Keep ONLY the Register Now button -->
           <div class="hero-content">
             <div class="cta-row">
               <a class="btn primary" href="registration.html">Register Now</a>
-              <a class="btn" href="current-season.html">View Current Season</a>
             </div>
-          </div>
-        </div>
-
-        <!-- Quick links pills (optional like your mock) -->
-        <div class="submenu" style="margin-top:14px;">
-          <a class="pill" href="current-season.html#MIDGET">Midget</a>
-          <a class="pill" href="current-season.html#PONY">Pony</a>
-          <a class="pill" href="current-season.html#PEEWEE">PeeWee</a>
-          <a class="pill" href="current-season.html#SMURF">Smurf</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hidden by CSS for now -->
-    <section class="section">
-      <div class="container">
-        <div class="grid">
-          <div class="card">
-            <h2>What we’re about</h2>
-            <p>
-              Player development, discipline, and teamwork—built for the community and designed to help kids grow on and off the field.
-            </p>
-          </div>
-          <div class="card">
-            <h2>Parents</h2>
-            <p>
-              Registration, key dates, team levels, and directions will live here. Tap “Register” anytime from the top bar.
-            </p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Hidden by CSS for now -->
-  <footer class="footer">
-    <div class="container">
-      © <span id="year"></span> GNMFA Youth Football • All Rights Reserved
-    </div>
-  </footer>
-
   <script src="/Buffalos/assets/site.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
