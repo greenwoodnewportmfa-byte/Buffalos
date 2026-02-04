@@ -1,3 +1,6 @@
+<!-- ==================================================
+     /Buffalos/teams/smurf.html
+================================================== -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,21 +12,30 @@
     .page-wrap{ padding:14px 0 32px; }
     .stack{ display:grid; gap:14px; }
     .card{ border-radius:18px; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.06); box-shadow:0 10px 26px rgba(0,0,0,.22); padding:14px; }
-    .title{ font-weight:1000; letter-spacing:1px; text-transform:uppercase; margin:0 0 8px; font-size:18px; }
+    .page-title{ font-weight:1000; letter-spacing:1px; text-transform:uppercase; margin:0 0 6px; font-size:18px; color:rgba(255,255,255,.95); }
     .muted{ color:rgba(255,255,255,.78); font-size:13px; line-height:1.5; }
-    .coach-grid{ display:grid; gap:10px; margin-top:10px; }
+
+    .staff-grid{ display:grid; gap:14px; }
+    @media (min-width: 860px){ .staff-grid{ grid-template-columns:1fr 1fr; } }
+
+    .group-title{ font-weight:1000; letter-spacing:1px; text-transform:uppercase; font-size:13px; margin:0 0 10px; color:rgba(255,255,255,.90); display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .badge{ font-size:11px; font-weight:1000; letter-spacing:.8px; text-transform:uppercase; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.20); color:rgba(255,255,255,.86); }
+
+    .coach-grid{ display:grid; gap:10px; }
     .coach-row{ display:flex; justify-content:space-between; gap:12px; padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.18); }
     .coach-role{ font-weight:900; text-transform:uppercase; letter-spacing:.7px; font-size:12px; color:rgba(255,255,255,.88); flex:1; }
-    .coach-name{ color:rgba(255,255,255,.82); font-size:13px; text-align:right; flex:1; }
-    .photo{ width:100%; height:280px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.18); }
-    .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .coach-name{ color:rgba(255,255,255,.82); font-size:13px; text-align:right; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
     .cal-link{ display:inline-flex; align-items:center; gap:10px; padding:12px 14px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.08); font-weight:900; letter-spacing:.6px; text-transform:uppercase; font-size:12px; }
     .cal-link:hover{ background:rgba(255,255,255,.12); }
     .cal-wrap{ margin-top:10px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.15); }
     .cal-wrap iframe{ width:100%; height:70vh; min-height:560px; border:0; display:block; }
+
+    .photo{ width:100%; height:280px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.18); }
+    .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .folder-link{ display:inline-flex; align-items:center; gap:10px; margin-top:10px; text-decoration:underline; color:rgba(255,255,255,.88); font-weight:900; letter-spacing:.4px; text-transform:uppercase; font-size:12px; }
   </style>
 </head>
-
 <body>
   <header class="topbar camo">
     <div class="container">
@@ -32,14 +44,12 @@
           <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text"><div class="title">GNMFA</div><div class="subtitle">Youth Football</div></div>
         </a>
-
         <nav class="nav" aria-label="Primary navigation">
           <a href="/Buffalos/index.html">Home</a>
           <a class="active" href="/Buffalos/current-season.html">Current Season</a>
           <a href="/Buffalos/registration.html">Registration</a>
           <a href="/Buffalos/directions.html">Directions</a>
         </nav>
-
         <div class="actions">
           <a class="btn primary" href="/Buffalos/registration.html" style="padding:10px 12px;border-radius:14px;font-size:12px;">Register</a>
           <button class="icon-btn mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
@@ -47,7 +57,6 @@
           </button>
         </div>
       </div>
-
       <div class="mobile-menu" data-mobile-menu>
         <a href="/Buffalos/index.html">Home</a>
         <a class="active" href="/Buffalos/current-season.html">Current Season</a>
@@ -61,44 +70,53 @@
     <div class="container">
       <div class="stack">
         <div class="card">
-          <div class="title">Smurf</div>
-          <div class="muted">
-            Photo folder:
-            <a href="https://drive.google.com/drive/folders/1Te1ld-Wsu6N4SyK16c7OUq-8t7__iDg8?usp=sharing" target="_blank" rel="noopener" style="text-decoration:underline;">Open</a>
+          <div class="page-title">Smurf</div>
+          <div class="muted">Football and Cheer coaching staff, schedule, and images.</div>
+        </div>
+
+        <div class="staff-grid">
+          <div class="card">
+            <div class="group-title">Football Coaching Staff <span class="badge">Football</span></div>
+            <div class="coach-grid">
+              <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Offensive Coordinator</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Defensive Coordinator</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Lineman Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="group-title">Cheer Coaching Staff <span class="badge">Cheer</span></div>
+            <div class="coach-grid">
+              <div class="coach-row"><div class="coach-role">Head Cheer Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Assistant Cheer Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Stunt Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Sideline Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Jr. Assistant</div><div class="coach-name">TBD</div></div>
+            </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="title">Coaches</div>
-          <div class="coach-grid">
-            <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Head Coach Cell Phone</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Offensive Coordinator</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Defensive Coordinator</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Lineman Coach</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="title">Images</div>
-          <div class="muted">Rotates on refresh.</div>
-          <div class="photo" style="margin-top:10px;"><img id="teamPhoto" alt="Smurf team photo" /></div>
-        </div>
-
-        <div class="card">
-          <div class="title">Calendar (Schedule View)</div>
+          <div class="page-title" style="font-size:16px;margin-bottom:6px;">Calendar (Schedule View)</div>
           <a class="cal-link"
              href="https://calendar.google.com/calendar/embed?src=78c04e59857b5b7735fdbd64e588dc7e0f56408d9d401a4e626422281fa33ad9%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
-             target="_blank" rel="noopener">
-            Add this Calendar to your Device
-          </a>
-
+             target="_blank" rel="noopener">Add this Calendar to your Device</a>
           <div class="cal-wrap">
             <iframe
               src="https://calendar.google.com/calendar/embed?src=78c04e59857b5b7735fdbd64e588dc7e0f56408d9d401a4e626422281fa33ad9%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
               scrolling="no"></iframe>
           </div>
+        </div>
+
+        <div class="card">
+          <div class="page-title" style="font-size:16px;margin-bottom:6px;">Images</div>
+          <div class="muted">Rotates on refresh. (Add direct image URLs later.)</div>
+          <div class="photo" style="margin-top:10px;"><img id="teamPhoto" alt="Smurf team photo" /></div>
+          <a class="folder-link"
+             href="https://drive.google.com/drive/folders/1Te1ld-Wsu6N4SyK16c7OUq-8t7__iDg8?usp=sharing"
+             target="_blank" rel="noopener">Open Photo Folder</a>
         </div>
       </div>
     </div>
@@ -108,10 +126,7 @@
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
-    const TEAM_PHOTO_URLS = [
-      // "https://example.com/smurf1.jpg",
-      // "https://example.com/smurf2.jpg"
-    ];
+    const TEAM_PHOTO_URLS = [];
     const fallback = "/Buffalos/assets/img/BuffHome.png";
     const img = document.getElementById("teamPhoto");
     img.src = TEAM_PHOTO_URLS.length ? TEAM_PHOTO_URLS[Math.floor(Math.random()*TEAM_PHOTO_URLS.length)] : fallback;
