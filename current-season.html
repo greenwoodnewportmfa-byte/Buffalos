@@ -27,8 +27,20 @@
       color: rgba(255,255,255,.92);
     }
 
-    /* Season submenu */
-    .season-menu{ display:grid; gap:10px; }
+    /* Season submenu (mobile-first: stacked; 720px+: side-by-side) */
+    .season-menu{
+      display:grid;
+      gap:12px;
+      grid-template-columns: 1fr; /* mobile */
+    }
+    @media (min-width: 720px){
+      .season-menu{
+        grid-template-columns: 1fr 1fr; /* side-by-side */
+        align-items: stretch;
+      }
+      .season-block{ height:100%; }
+    }
+
     .season-block{
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,.10);
