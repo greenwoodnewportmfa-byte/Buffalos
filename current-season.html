@@ -7,16 +7,9 @@
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    /* Page layout helpers (mobile-first) */
     .page-wrap{ padding: 14px 0 32px; }
-    .section-title{
-      font-weight: 1000;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 14px;
-      margin: 0 0 10px;
-      color: rgba(255,255,255,.9);
-    }
+    .stack{ display:grid; gap:14px; }
+
     .card{
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,.10);
@@ -24,14 +17,18 @@
       box-shadow: 0 10px 26px rgba(0,0,0,.22);
       padding: 14px;
     }
-    .stack{ display:grid; gap:14px; }
 
-    /* Two-tier submenu: FALL + SPRING */
-    .season-menu{
-      display:grid;
-      gap:10px;
-      margin-top: 10px;
+    .section-title{
+      font-weight: 1000;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.92);
     }
+
+    /* Season submenu */
+    .season-menu{ display:grid; gap:10px; }
     .season-block{
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,.10);
@@ -46,11 +43,7 @@
       margin: 0 0 10px;
       color: rgba(255,255,255,.85);
     }
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+    .pill-row{ display:flex; flex-wrap:wrap; gap:10px; }
     .pill{
       padding: 10px 14px;
       border-radius: 999px;
@@ -64,21 +57,7 @@
     }
     .pill:hover{ background: rgba(255,255,255,.08); opacity:1; }
 
-    /* Calendar embed mobile-friendly */
-    .cal-wrap{
-      border-radius: 18px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.15);
-    }
-    .cal-wrap iframe{
-      width: 100%;
-      height: 70vh;
-      min-height: 560px;
-      border: 0;
-      display:block;
-    }
-
+    /* Map button */
     .map-link{
       display:inline-flex;
       gap:10px;
@@ -94,18 +73,28 @@
     }
     .map-link:hover{ background: rgba(255,255,255,.12); }
 
-    @media (min-width: 920px){
-      .cal-wrap iframe{ height: 72vh; min-height: 640px; }
+    /* Calendar */
+    .cal-wrap{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.15);
+    }
+    .cal-wrap iframe{
+      width: 100%;
+      height: 70vh;
+      min-height: 560px;
+      border: 0;
+      display:block;
     }
   </style>
 </head>
 
 <body>
-  <!-- Header (use your same header markup; banner-at-bottom version shown previously) -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="index.html" aria-label="GNMFA Home">
+        <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
           <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text">
             <div class="title">GNMFA</div>
@@ -114,14 +103,14 @@
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a class="active" href="current-season.html">Current Season</a>
-          <a href="registration.html">Registration</a>
-          <a href="directions.html">Directions</a>
+          <a href="/Buffalos/index.html">Home</a>
+          <a class="active" href="/Buffalos/current-season.html">Current Season</a>
+          <a href="/Buffalos/registration.html">Registration</a>
+          <a href="/Buffalos/directions.html">Directions</a>
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html" style="padding:10px 12px;border-radius:14px;font-size:12px;">Register</a>
+          <a class="btn primary" href="/Buffalos/registration.html" style="padding:10px 12px;border-radius:14px;font-size:12px;">Register</a>
           <button class="icon-btn mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
             <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
           </button>
@@ -129,10 +118,10 @@
       </div>
 
       <div class="mobile-menu" data-mobile-menu>
-        <a href="index.html">Home</a>
-        <a class="active" href="current-season.html">Current Season</a>
-        <a href="registration.html">Registration</a>
-        <a href="directions.html">Directions</a>
+        <a href="/Buffalos/index.html">Home</a>
+        <a class="active" href="/Buffalos/current-season.html">Current Season</a>
+        <a href="/Buffalos/registration.html">Registration</a>
+        <a href="/Buffalos/directions.html">Directions</a>
       </div>
     </div>
   </header>
@@ -141,16 +130,14 @@
     <div class="container">
       <div class="stack">
 
-        <!-- Season submenu -->
         <div class="season-menu">
           <div class="season-block">
             <div class="season-label">Fall</div>
             <div class="pill-row">
               <a class="pill" href="/Buffalos/teams/midget.html">Midget</a>
-<a class="pill" href="/Buffalos/teams/pony.html">Pony</a>
-<a class="pill" href="/Buffalos/teams/peewee.html">PeeWee</a>
-<a class="pill" href="/Buffalos/teams/smurf.html">Smurf</a>
-
+              <a class="pill" href="/Buffalos/teams/pony.html">Pony</a>
+              <a class="pill" href="/Buffalos/teams/peewee.html">PeeWee</a>
+              <a class="pill" href="/Buffalos/teams/smurf.html">Smurf</a>
             </div>
           </div>
 
@@ -158,12 +145,10 @@
             <div class="season-label">Spring</div>
             <div class="pill-row">
               <a class="pill" href="/Buffalos/teams/flag-football.html">Flag Football</a>
-
             </div>
           </div>
         </div>
 
-        <!-- Home field -->
         <div class="card">
           <div class="section-title">Home Field</div>
           <div style="color:rgba(255,255,255,.85); line-height:1.5; margin-bottom:10px;">
@@ -176,12 +161,11 @@
           </a>
         </div>
 
-        <!-- Main calendar -->
         <div class="card">
-          <div class="section-title">Main Calendar</div>
+          <div class="section-title">Main Calendar (Schedule View)</div>
           <div class="cal-wrap">
             <iframe
-              src="https://calendar.google.com/calendar/embed?src=greenwoodnewportmfa%40gmail.com&ctz=America%2FNew_York"
+              src="https://calendar.google.com/calendar/embed?src=greenwoodnewportmfa%40gmail.com&ctz=America%2FNew_York&mode=AGENDA"
               scrolling="no">
             </iframe>
           </div>
@@ -191,7 +175,6 @@
     </div>
   </main>
 
-  <!-- Bottom banner (matches your homepage approach) -->
   <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
 
   <script src="/Buffalos/assets/site.js"></script>
