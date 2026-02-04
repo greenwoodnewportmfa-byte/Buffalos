@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registration | GNMFA</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <!-- SAME HEADER -->
+  <header class="topbar camo">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html" aria-label="GNMFA Home">
+          <img src="assets/img/logo.png" alt="GNMFA logo" />
+          <div class="text">
+            <div class="title">GNMFA</div>
+            <div class="subtitle">Youth Football</div>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="current-season.html">Current Season</a>
+          <a class="active" href="registration.html">Registration</a>
+          <a href="directions.html">Directions</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
+          <button class="icon-btn mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
+            <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" data-mobile-menu>
+        <a href="index.html">Home</a>
+        <a href="current-season.html">Current Season</a>
+        <a class="active" href="registration.html">Registration</a>
+        <a href="directions.html">Directions</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="grid">
+        <div class="card">
+          <h2>Online Registration</h2>
+          <p style="margin-bottom:12px;">
+            Embed your Google Form here. Use a Google Form that writes responses to a Google Sheet.
+          </p>
+
+          <!-- Replace the src with your Google Form embed URL -->
+          <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.10);">
+            <iframe
+              title="GNMFA Registration Form"
+              src="PASTE_YOUR_GOOGLE_FORM_EMBED_URL_HERE"
+              width="100%"
+              height="820"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              style="background: rgba(255,255,255,.03);">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Pay Registration</h2>
+          <p style="margin-bottom:12px;">
+            Add a payment option (Square, PayPal, Stripe Payment Link, etc.). You can drop a payment link button below.
+          </p>
+
+          <!-- Replace href with your payment link -->
+          <a class="btn primary" href="PASTE_YOUR_PAYMENT_LINK_HERE" target="_blank" rel="noopener">
+            Pay Now
+          </a>
+
+          <div style="height:12px"></div>
+
+          <p style="font-size:12px; color:rgba(255,255,255,.75); line-height:1.45;">
+            Tip: payment links are easiest on mobile. If you want card + ACH, Square or Stripe Payment Links work well.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> GNMFA Youth Football</div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
