@@ -1,6 +1,6 @@
-<!-- =========================
+<!-- ==================================================
      /Buffalos/teams/midget.html
-     ========================= -->
+================================================== -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Midget | GNMFA</title>
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
+
   <style>
     .page-wrap{ padding:14px 0 32px; }
     .stack{ display:grid; gap:14px; }
@@ -19,70 +20,139 @@
       box-shadow:0 10px 26px rgba(0,0,0,.22);
       padding:14px;
     }
-    .title{
+
+    .page-title{
       font-weight:1000;
       letter-spacing:1px;
       text-transform:uppercase;
-      margin:0 0 8px;
+      margin:0 0 6px;
       font-size:18px;
       color:rgba(255,255,255,.95);
     }
     .muted{ color:rgba(255,255,255,.78); font-size:13px; line-height:1.5; }
 
-    .coach-grid{ display:grid; gap:10px; margin-top:10px; }
+    /* Staff layout */
+    .staff-grid{
+      display:grid;
+      gap:14px;
+    }
+    @media (min-width: 860px){
+      .staff-grid{
+        grid-template-columns: 1fr 1fr;
+        align-items:start;
+      }
+    }
+
+    .group-title{
+      font-weight:1000;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:13px;
+      margin:0 0 10px;
+      color:rgba(255,255,255,.90);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .badge{
+      font-size:11px;
+      font-weight:1000;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.20);
+      color:rgba(255,255,255,.86);
+      white-space:nowrap;
+    }
+
+    .coach-grid{ display:grid; gap:10px; }
     .coach-row{
-      display:flex; justify-content:space-between; gap:12px;
-      padding:10px 12px; border-radius:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 12px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.18);
     }
     .coach-role{
-      font-weight:900; text-transform:uppercase; letter-spacing:.7px;
-      font-size:12px; color:rgba(255,255,255,.88); flex:1;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      font-size:12px;
+      color:rgba(255,255,255,.88);
+      flex:1;
     }
     .coach-name{
-      color:rgba(255,255,255,.82); font-size:13px; text-align:right;
-      flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+      text-align:right;
+      flex:1;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
+    /* Calendar */
     .cal-link{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 14px; border-radius:16px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.08);
-      font-weight:900; letter-spacing:.6px;
-      text-transform:uppercase; font-size:12px;
+      font-weight:900;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      font-size:12px;
     }
     .cal-link:hover{ background:rgba(255,255,255,.12); }
 
     .cal-wrap{
       margin-top:10px;
-      border-radius:18px; overflow:hidden;
+      border-radius:18px;
+      overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.15);
     }
     .cal-wrap iframe{
-      width:100%; height:70vh; min-height:560px;
-      border:0; display:block;
+      width:100%;
+      height:70vh;
+      min-height:560px;
+      border:0;
+      display:block;
     }
 
+    /* Images (bottom) */
     .photo{
-      width:100%; height:280px;
-      border-radius:18px; overflow:hidden;
+      width:100%;
+      height:280px;
+      border-radius:18px;
+      overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.18);
     }
     .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
     .folder-link{
-      display:inline-flex; align-items:center; gap:10px;
-      margin-top:10px; text-decoration:underline;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:10px;
+      text-decoration:underline;
       color:rgba(255,255,255,.88);
-      font-weight:900; letter-spacing:.4px;
-      text-transform:uppercase; font-size:12px;
+      font-weight:900;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      font-size:12px;
     }
   </style>
 </head>
+
 <body>
   <header class="topbar camo">
     <div class="container">
@@ -126,30 +196,52 @@
       <div class="stack">
 
         <div class="card">
-          <div class="title">Midget</div>
-          <div class="muted">Team info, coaches, and schedule.</div>
+          <div class="page-title">Midget</div>
+          <div class="muted">Football and Cheer coaching staff, schedule, and images.</div>
         </div>
 
-        <div class="card">
-          <div class="title">Head Coach</div>
-          <div class="coach-grid">
-            <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Cell Phone</div><div class="coach-name">TBD</div></div>
+        <div class="staff-grid">
+          <!-- FOOTBALL STAFF -->
+          <div class="card">
+            <div class="group-title">
+              Football Coaching Staff
+              <span class="badge">Football</span>
+            </div>
+
+            <div class="coach-grid">
+              <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Head Coach Cell</div><div class="coach-name">TBD</div></div>
+
+              <div class="coach-row"><div class="coach-role">Offensive Coordinator</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Defensive Coordinator</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Lineman Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
+            </div>
+          </div>
+
+          <!-- CHEER STAFF -->
+          <div class="card">
+            <div class="group-title">
+              Cheer Coaching Staff
+              <span class="badge">Cheer</span>
+            </div>
+
+            <div class="coach-grid">
+              <div class="coach-row"><div class="coach-role">Head Cheer Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Head Cheer Coach Cell</div><div class="coach-name">TBD</div></div>
+
+              <div class="coach-row"><div class="coach-role">Assistant Cheer Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Stunt Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Sideline Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Jr. Assistant</div><div class="coach-name">TBD</div></div>
+            </div>
           </div>
         </div>
 
+        <!-- CALENDAR -->
         <div class="card">
-          <div class="title">Assistant Coaches</div>
-          <div class="coach-grid">
-            <div class="coach-row"><div class="coach-role">Offensive Coordinator</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Defensive Coordinator</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Lineman Coach</div><div class="coach-name">TBD</div></div>
-            <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
-          </div>
-        </div>
+          <div class="page-title" style="font-size:16px;margin-bottom:6px;">Calendar (Schedule View)</div>
 
-        <div class="card">
-          <div class="title">Calendar (Schedule View)</div>
           <a class="cal-link"
              href="https://calendar.google.com/calendar/embed?src=edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
              target="_blank" rel="noopener">Add this Calendar to your Device</a>
@@ -161,9 +253,11 @@
           </div>
         </div>
 
+        <!-- IMAGES (BOTTOM) -->
         <div class="card">
-          <div class="title">Images</div>
-          <div class="muted">Rotates on refresh.</div>
+          <div class="page-title" style="font-size:16px;margin-bottom:6px;">Images</div>
+          <div class="muted">Rotates on refresh. (Add direct image URLs later.)</div>
+
           <div class="photo" style="margin-top:10px;">
             <img id="teamPhoto" alt="Midget team photo" />
           </div>
@@ -181,12 +275,17 @@
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
+    // NOTE: Google Drive *folder* links won't work in <img src>.
+    // Paste DIRECT image URLs into this list.
     const TEAM_PHOTO_URLS = [
-      // Paste DIRECT image URLs here (Drive folder links won't work as <img src>)
+      // "https://example.com/photo1.jpg",
+      // "https://example.com/photo2.jpg"
     ];
     const fallback = "/Buffalos/assets/img/BuffHome.png";
     const img = document.getElementById("teamPhoto");
-    img.src = TEAM_PHOTO_URLS.length ? TEAM_PHOTO_URLS[Math.floor(Math.random()*TEAM_PHOTO_URLS.length)] : fallback;
+    img.src = TEAM_PHOTO_URLS.length
+      ? TEAM_PHOTO_URLS[Math.floor(Math.random() * TEAM_PHOTO_URLS.length)]
+      : fallback;
   </script>
 </body>
 </html>
