@@ -216,6 +216,7 @@ a{ color:inherit; text-decoration:none; }
 
   background-color: #0b1a33; /* navy fallback instead of near-black */
 }
+
 .hero img{
   width:100%;
   height: 68vh;
