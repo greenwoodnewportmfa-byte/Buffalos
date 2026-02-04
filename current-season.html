@@ -135,6 +135,7 @@
       color:rgba(255,255,255,.72);
       line-height:1.35;
       margin:0;
+      text-align:center;
     }
 
     .check-row{
@@ -284,12 +285,12 @@
           <!-- CHECKBOX CONTROLS -->
           <div class="cal-controls" aria-label="Calendar filters">
             <p class="hint">
-              Select one or more calendars to display. (If none selected, we’ll show the Main calendar.)
+              Select one or more calendars to display. Your selections are saved on this device.
             </p>
 
             <div class="check-row">
               <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="main" checked />
+                <input type="checkbox" class="cal-check" data-cal="main" />
                 <span>Main</span>
               </label>
 
@@ -342,7 +343,9 @@
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
-    // Calendar IDs (the "src=" values)
+    // --------- Config ----------
+    const STORAGE_KEY = "gnmfa_selected_calendars_v1";
+
     const CALS = {
       main:   "greenwoodnewportmfa@gmail.com",
       midget: "edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793@group.calendar.google.com",
@@ -355,47 +358,80 @@
     const frame = document.getElementById("calendarFrame");
     const checks = Array.from(document.querySelectorAll(".cal-check"));
 
+    // --------- Helpers ----------
     function buildCalendarUrl(selectedKeys){
-      const base = new URL("https://calendar.google.com/calendar/embed");
-      base.searchParams.set("ctz", "America/New_York");
-      base.searchParams.set("mode", "AGENDA");
+      const url = new URL("https://calendar.google.com/calendar/embed");
+      url.searchParams.set("ctz", "America/New_York");
+      url.searchParams.set("mode", "AGENDA");
 
-      // If none selected, default to Main
       const keys = selectedKeys.length ? selectedKeys : ["main"];
-      keys.forEach(k => base.searchParams.append("src", CALS[k]));
-
-      return base.toString();
+      keys.forEach(k => url.searchParams.append("src", CALS[k]));
+      return url.toString();
     }
 
     function getSelectedKeys(){
       return checks.filter(c => c.checked).map(c => c.dataset.cal);
     }
 
-    function updateCalendar(){
-      frame.src = buildCalendarUrl(getSelectedKeys());
+    function setSelectedKeys(keys){
+      const set = new Set(keys);
+      checks.forEach(c => c.checked = set.has(c.dataset.cal));
     }
 
-    // checkbox change listeners
-    checks.forEach(c => c.addEventListener("change", updateCalendar));
+    function saveSelection(keys){
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(keys));
+      }catch(e){
+        // ignore storage errors (private mode, etc.)
+      }
+    }
 
-    // buttons
+    function loadSelection(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return null;
+        const parsed = JSON.parse(raw);
+        if(!Array.isArray(parsed)) return null;
+        // keep only valid keys
+        return parsed.filter(k => Object.prototype.hasOwnProperty.call(CALS, k));
+      }catch(e){
+        return null;
+      }
+    }
+
+    function updateCalendar({persist=true} = {}){
+      const keys = getSelectedKeys();
+      frame.src = buildCalendarUrl(keys);
+      if(persist) saveSelection(keys);
+    }
+
+    // --------- Wire up events ----------
+    checks.forEach(c => c.addEventListener("change", () => updateCalendar({persist:true})));
+
     document.getElementById("calSelectAll").addEventListener("click", () => {
       checks.forEach(c => c.checked = true);
-      updateCalendar();
+      updateCalendar({persist:true});
     });
 
     document.getElementById("calClear").addEventListener("click", () => {
       checks.forEach(c => c.checked = false);
-      updateCalendar(); // will fall back to Main
+      updateCalendar({persist:true}); // iframe falls back to main
     });
 
     document.getElementById("calMainOnly").addEventListener("click", () => {
       checks.forEach(c => c.checked = (c.dataset.cal === "main"));
-      updateCalendar();
+      updateCalendar({persist:true});
     });
 
-    // initial set
-    updateCalendar();
+    // --------- Init from localStorage ----------
+    const saved = loadSelection();
+    if(saved && saved.length){
+      setSelectedKeys(saved);
+    }else{
+      // default state if nothing saved yet
+      setSelectedKeys(["main"]);
+    }
+    updateCalendar({persist:false}); // don't overwrite stored value on first paint
   </script>
 </body>
 </html>
