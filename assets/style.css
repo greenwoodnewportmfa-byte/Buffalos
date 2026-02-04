@@ -1,16 +1,15 @@
 /* =========================
-   GNMFA - Mobile-first theme
+   GNMFA / Buffalos Theme
+   Mobile-first, modern
    ========================= */
 
 :root{
   --navy:#0b1a33;
   --navy2:#0f274e;
-  --camoNavy1:#0c1f3a;
-  --camoNavy2:#122b52;
   --white:#ffffff;
   --lt:#e7e9ee;
+  --muted:rgba(255,255,255,.72);
   --grey:#aab1bc;
-  --dgrey:#1a2233;
 
   --shadow: 0 12px 30px rgba(0,0,0,.35);
   --radius: 18px;
@@ -22,30 +21,28 @@
 html,body{ margin:0; padding:0; }
 body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.08), rgba(0,0,0,0)),
-              linear-gradient(180deg, #060a13, #0b1220 60%, #05070c);
   color: var(--lt);
+  background: #060a13; /* fallback */
 }
 
-/* Subtle camo texture (no external image needed) */
+a{ color:inherit; text-decoration:none; }
+.container{ width:min(var(--max), 92vw); margin:0 auto; }
+
+/* =========================
+   Header / Nav
+   ========================= */
+
+/* camo header background */
 .camo{
   background:
     radial-gradient(14px 12px at 20% 30%, rgba(255,255,255,.05), transparent 60%),
     radial-gradient(18px 14px at 70% 25%, rgba(255,255,255,.04), transparent 62%),
     radial-gradient(22px 18px at 35% 70%, rgba(255,255,255,.035), transparent 62%),
     radial-gradient(26px 22px at 78% 72%, rgba(255,255,255,.03), transparent 62%),
-    linear-gradient(135deg, rgba(255,255,255,.03), transparent 30%),
     linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.65)),
-    linear-gradient(120deg, var(--camoNavy1), var(--camoNavy2));
+    linear-gradient(120deg, #0c1f3a, #122b52);
 }
 
-a{ color:inherit; text-decoration:none; }
-.container{ width:min(var(--max), 92vw); margin:0 auto; }
-.hidden{ display:none !important; }
-
-/* =========================
-   Header / Nav
-   ========================= */
 .topbar{
   position: sticky;
   top:0;
@@ -62,6 +59,22 @@ a{ color:inherit; text-decoration:none; }
   padding: 14px 0;
 }
 
+/* Banner ABOVE nav (white bg, navy text) */
+.site-banner{
+  text-align:center;
+  font-weight: 1000;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-size: 24px;             /* 200% of 12px */
+  line-height: 1.15;
+  padding: 14px 10px;
+
+  background: #ffffff;
+  color: var(--navy);
+  border-bottom: 2px solid rgba(11,26,51,.15);
+}
+
+/* Brand */
 .brand{
   display:flex;
   align-items:center;
@@ -73,6 +86,9 @@ a{ color:inherit; text-decoration:none; }
   width: 54px;
   height: 54px;
   object-fit:contain;
+  /* If your logo is dark and you want it white on the header, uncomment:
+  filter: invert(1) brightness(2);
+  */
   filter: drop-shadow(0 8px 18px rgba(0,0,0,.45));
 }
 
@@ -87,7 +103,7 @@ a{ color:inherit; text-decoration:none; }
   font-size: 18px;
 }
 .brand .subtitle{
-  color: rgba(255,255,255,.72);
+  color: var(--muted);
   font-size: 12px;
   margin-top: 4px;
 }
@@ -115,6 +131,34 @@ a{ color:inherit; text-decoration:none; }
   display:flex;
   align-items:center;
   gap:10px;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.09);
+  color: var(--white);
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: .9px;
+  cursor:pointer;
+  transition: transform .1s ease, background .15s ease;
+}
+.btn:hover{ background: rgba(255,255,255,.13); }
+.btn:active{ transform: scale(.99); }
+
+.btn.primary{
+  background: linear-gradient(135deg, #1b3a72, #0b1a33);
+  border-color: rgba(255,255,255,.18);
+}
+.btn.primary:hover{
+  background: linear-gradient(135deg, #214588, #0b1a33);
 }
 
 /* Mobile hamburger */
@@ -169,7 +213,30 @@ a{ color:inherit; text-decoration:none; }
   background: rgba(255,255,255,.10);
 }
 
-/* Submenu (Current Season) */
+/* =========================
+   Home page background section
+   (Use this in index.html)
+   ========================= */
+
+.hero-bg-section{
+  /* start immediately below the header */
+  min-height: calc(100vh - 140px); /* banner + header area estimate */
+
+  /* 50% lighter overlay vs original */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.25),
+      rgba(0,0,0,.35)
+    ),
+    url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
+
+  background-color: var(--navy); /* fallback behind image */
+}
+
+/* =========================
+   Submenu pills (if used)
+   ========================= */
 .submenu{
   display:flex;
   gap:10px;
@@ -191,127 +258,10 @@ a{ color:inherit; text-decoration:none; }
 .pill:hover{ background: rgba(255,255,255,.08); opacity:1; }
 
 /* =========================
-   Hero
+   Content cards (for later pages)
    ========================= */
-.hero{
-  padding: 22px 0 40px;
-}
-.hero-card{
-  position: relative;
-  overflow:hidden;
-  border-radius: var(--radius2);
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,.10);
-}
-.hero-bg-section{
-  min-height: calc(100vh - 140px);
-  background:
-    /* 50% lighter overlay */
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.25),
-      rgba(0,0,0,.35)
-    ),
-    url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
-
-  background-color: #0b1a33; /* navy fallback instead of near-black */
-}
-
-.hero img{
-  width:100%;
-  height: 68vh;
-  max-height: 760px;
-  min-height: 520px;
-  object-fit: cover;
-  display:block;
-  filter: contrast(1.05) saturate(1.02);
-}
-
-.hero-content{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  gap: 14px;
-  padding: 18px 16px 18px;
-}
-
-.kicker{
-  font-weight: 900;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  opacity: .95;
-  font-size: 12px;
-}
-
-.h1{
-  font-weight: 1000;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  line-height: .95;
-  margin:0;
-  font-size: 44px;
-  text-shadow: 0 14px 40px rgba(0,0,0,.6);
-}
-.h1 span{
-  display:block;
-  font-size: 26px;
-  opacity: .95;
-  margin-top: 8px;
-}
-
-.cta-row{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding: 14px 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.09);
-  color: var(--white);
-  font-weight: 1000;
-  text-transform: uppercase;
-  letter-spacing: .9px;
-  cursor:pointer;
-  transition: transform .1s ease, background .15s ease;
-}
-.btn:hover{ background: rgba(255,255,255,.13); }
-.btn:active{ transform: scale(.99); }
-
-.btn.primary{
-  background: linear-gradient(135deg, #1b3a72, #0b1a33);
-  border-color: rgba(255,255,255,.18);
-}
-.btn.primary:hover{
-  background: linear-gradient(135deg, #214588, #0b1a33);
-}
-
-.mini-note{
-  color: rgba(255,255,255,.78);
-  font-size: 12px;
-  line-height: 1.4;
-  max-width: 540px;
-}
-
-/* =========================
-   Content blocks
-   ========================= */
-.section{
-  padding: 26px 0 50px;
-}
-.grid{
-  display:grid;
-  gap:14px;
-}
+.section{ padding: 26px 0 50px; }
+.grid{ display:grid; gap:14px; }
 .card{
   border-radius: var(--radius);
   border: 1px solid rgba(255,255,255,.10);
@@ -332,7 +282,6 @@ a{ color:inherit; text-decoration:none; }
   font-size: 14px;
 }
 
-/* Footer */
 .footer{
   padding: 26px 0 34px;
   border-top: 1px solid rgba(255,255,255,.08);
@@ -347,8 +296,10 @@ a{ color:inherit; text-decoration:none; }
   .nav{ display:flex; }
   .mobile-toggle{ display:none; }
   .mobile-menu{ display:none !important; }
-  .hero-content{ padding: 26px 26px 24px; }
-  .h1{ font-size: 64px; }
-  .h1 span{ font-size: 32px; }
   .grid{ grid-template-columns: 1fr 1fr; }
+
+  /* On wider screens you may want a taller background section */
+  .hero-bg-section{
+    min-height: calc(100vh - 140px);
+  }
 }
