@@ -118,6 +118,82 @@
       border:0;
       display:block;
     }
+
+    /* Calendar selector */
+    .cal-controls{
+      display:grid;
+      gap:10px;
+      margin: 10px 0 12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+    }
+
+    .cal-controls .hint{
+      font-size:12px;
+      color:rgba(255,255,255,.72);
+      line-height:1.35;
+      margin:0;
+    }
+
+    .check-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center; /* center checkboxes */
+    }
+
+    .check-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.25);
+      user-select:none;
+      cursor:pointer;
+    }
+
+    .check-pill input{
+      width:18px;
+      height:18px;
+      accent-color:#0b1a33; /* navy */
+      cursor:pointer;
+    }
+
+    .check-pill span{
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+      font-size:12px;
+      color:rgba(255,255,255,.90);
+    }
+
+    .cal-actions{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .small-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      font-weight:900;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      font-size:12px;
+      cursor:pointer;
+    }
+    .small-btn:hover{ background:rgba(255,255,255,.12); }
   </style>
 </head>
 
@@ -203,10 +279,56 @@
 
         <!-- CALENDAR -->
         <div class="card">
-          <div class="section-title">Main Calendar (Schedule View)</div>
+          <div class="section-title">Calendars (Schedule View)</div>
+
+          <!-- CHECKBOX CONTROLS -->
+          <div class="cal-controls" aria-label="Calendar filters">
+            <p class="hint">
+              Select one or more calendars to display. (If none selected, we’ll show the Main calendar.)
+            </p>
+
+            <div class="check-row">
+              <label class="check-pill">
+                <input type="checkbox" class="cal-check" data-cal="main" checked />
+                <span>Main</span>
+              </label>
+
+              <label class="check-pill">
+                <input type="checkbox" class="cal-check" data-cal="midget" />
+                <span>Midget</span>
+              </label>
+
+              <label class="check-pill">
+                <input type="checkbox" class="cal-check" data-cal="pony" />
+                <span>Pony</span>
+              </label>
+
+              <label class="check-pill">
+                <input type="checkbox" class="cal-check" data-cal="peewee" />
+                <span>PeeWee</span>
+              </label>
+
+              <label class="check-pill">
+                <input type="checkbox" class="cal-check" data-cal="smurf" />
+                <span>Smurf</span>
+              </label>
+
+              <label class="check-pill">
+                <input type="checkbox" class="cal-check" data-cal="flag" />
+                <span>Flag</span>
+              </label>
+            </div>
+
+            <div class="cal-actions">
+              <button class="small-btn" type="button" id="calSelectAll">Select All</button>
+              <button class="small-btn" type="button" id="calClear">Clear</button>
+              <button class="small-btn" type="button" id="calMainOnly">Main Only</button>
+            </div>
+          </div>
+
           <div class="cal-wrap">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?src=greenwoodnewportmfa%40gmail.com&ctz=America%2FNew_York&mode=AGENDA"
+            <iframe id="calendarFrame"
+              src="https://calendar.google.com/calendar/embed?ctz=America%2FNew_York&mode=AGENDA&src=greenwoodnewportmfa%40gmail.com"
               scrolling="no">
             </iframe>
           </div>
@@ -219,5 +341,61 @@
   <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
 
   <script src="/Buffalos/assets/site.js"></script>
+  <script>
+    // Calendar IDs (the "src=" values)
+    const CALS = {
+      main:   "greenwoodnewportmfa@gmail.com",
+      midget: "edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793@group.calendar.google.com",
+      peewee: "1ea58f6ae42c7d08cd7ad9e39b7d4b747ca1e212a77096caadfcb0569eedc458@group.calendar.google.com",
+      pony:   "96f7a0490181387d4827555994a09291b7e38b2548ce8804cd095b62c04df745@group.calendar.google.com",
+      smurf:  "78c04e59857b5b7735fdbd64e588dc7e0f56408d9d401a4e626422281fa33ad9@group.calendar.google.com",
+      flag:   "b53aad8bb141e32a2eabe3d3b82a4afeeedf672a61f87e7c1f41b9ef527b9f27@group.calendar.google.com"
+    };
+
+    const frame = document.getElementById("calendarFrame");
+    const checks = Array.from(document.querySelectorAll(".cal-check"));
+
+    function buildCalendarUrl(selectedKeys){
+      const base = new URL("https://calendar.google.com/calendar/embed");
+      base.searchParams.set("ctz", "America/New_York");
+      base.searchParams.set("mode", "AGENDA");
+
+      // If none selected, default to Main
+      const keys = selectedKeys.length ? selectedKeys : ["main"];
+      keys.forEach(k => base.searchParams.append("src", CALS[k]));
+
+      return base.toString();
+    }
+
+    function getSelectedKeys(){
+      return checks.filter(c => c.checked).map(c => c.dataset.cal);
+    }
+
+    function updateCalendar(){
+      frame.src = buildCalendarUrl(getSelectedKeys());
+    }
+
+    // checkbox change listeners
+    checks.forEach(c => c.addEventListener("change", updateCalendar));
+
+    // buttons
+    document.getElementById("calSelectAll").addEventListener("click", () => {
+      checks.forEach(c => c.checked = true);
+      updateCalendar();
+    });
+
+    document.getElementById("calClear").addEventListener("click", () => {
+      checks.forEach(c => c.checked = false);
+      updateCalendar(); // will fall back to Main
+    });
+
+    document.getElementById("calMainOnly").addEventListener("click", () => {
+      checks.forEach(c => c.checked = (c.dataset.cal === "main"));
+      updateCalendar();
+    });
+
+    // initial set
+    updateCalendar();
+  </script>
 </body>
 </html>
