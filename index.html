@@ -7,53 +7,36 @@
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    /* FULL BACKGROUND IMAGE - DO NOT CROP */
-    body{
-      margin:0;
-      min-height:100vh;
-
-      /* Keep your dark overlay */
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
-        url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
-
-      /* Prevent mobile "fixed background" glitches */
-      background-attachment: scroll;
-
-      /* If the image doesn't fill width/height, this shows behind it */
-      background-color: #060a13;
-    }
-
-    /* Banner above main menu (200% bigger) */
+    /* Banner: white background, navy text */
     .site-banner{
       text-align:center;
       font-weight: 1000;
       letter-spacing: 1.6px;
       text-transform: uppercase;
-
-      /* 200% of 12px = 24px */
       font-size: 24px;
       line-height: 1.15;
-
       padding: 14px 10px;
-      color: rgba(255,255,255,.95);
-      background: rgba(0,0,0,.35);
-      border-bottom: 1px solid rgba(255,255,255,.12);
+
+      background: #ffffff;
+      color: #0b1a33; /* navy */
+      border-bottom: 2px solid rgba(11,26,51,.15);
     }
 
-    /* Remove hero block spacing since we no longer need it */
-    .hero{
-      padding: 0 !important;
-      margin: 0 !important;
+    /* Background section BELOW header */
+    .hero-bg-section{
+      min-height: calc(100vh - 140px); /* accounts for banner + menu */
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
+        url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
+      background-color: #060a13;
     }
+
+    /* Remove old hero visuals entirely */
+    .hero,
     .hero-card,
     .hero-content,
     .hero-bg,
-    .hero-card img{
-      display:none !important;
-    }
-
-    /* Optional: hide lower content & footer if you want a clean landing page */
+    .hero-card img,
     .section,
     .footer{
       display:none !important;
@@ -62,10 +45,15 @@
 </head>
 
 <body>
+
+  <!-- Header -->
   <header class="topbar camo">
     <div class="container">
+
       <!-- Banner -->
-      <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
+      <div class="site-banner">
+        GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+      </div>
 
       <div class="topbar-inner">
         <a class="brand" href="index.html" aria-label="GNMFA Home">
@@ -84,7 +72,8 @@
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
+          <a class="btn primary" href="registration.html"
+             style="padding:12px 14px;border-radius:14px;">Register</a>
 
           <button class="icon-btn mobile-toggle" type="button"
                   aria-label="Open menu" aria-expanded="false"
@@ -103,18 +92,14 @@
         <a href="registration.html">Registration</a>
         <a href="directions.html">Directions</a>
       </div>
+
     </div>
   </header>
 
+  <!-- BACKGROUND IMAGE STARTS HERE -->
   <main>
-    <!-- Hero removed intentionally -->
-    <section class="hero"></section>
-
-    <!-- These sections are hidden by the CSS above -->
-    <section class="section"></section>
+    <section class="hero-bg-section"></section>
   </main>
-
-  <footer class="footer"></footer>
 
   <script src="/Buffalos/assets/site.js"></script>
 </body>
