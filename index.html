@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GNMFA Youth Football</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <!-- Header (reuse on every page) -->
+  <header class="topbar camo">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html" aria-label="GNMFA Home">
+          <img src="assets/img/logo.png" alt="GNMFA logo" />
+          <div class="text">
+            <div class="title">GNMFA</div>
+            <div class="subtitle">Youth Football</div>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="active" href="index.html">Home</a>
+          <a href="current-season.html">Current Season</a>
+          <a href="registration.html">Registration</a>
+          <a href="directions.html">Directions</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
+
+          <button class="icon-btn mobile-toggle" type="button"
+                  aria-label="Open menu" aria-expanded="false"
+                  data-mobile-toggle>
+            <div class="burger-lines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" data-mobile-menu>
+        <a class="active" href="index.html">Home</a>
+        <a href="current-season.html">Current Season</a>
+        <a href="registration.html">Registration</a>
+        <a href="directions.html">Directions</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-bg"></div>
+          <img src="assets/img/BuffHome.png" alt="Buffalo football player hero" />
+
+          <div class="hero-content">
+            <div class="kicker">Welcome to</div>
+            <h1 class="h1">GNMFA <span>Youth Football</span></h1>
+
+            <div class="cta-row">
+              <a class="btn primary" href="registration.html">Register Now</a>
+              <a class="btn" href="current-season.html">View Current Season</a>
+            </div>
+
+            <div class="mini-note">
+              Modern, mobile-friendly site for parents, players, and fans. Schedules, updates, and registration all in one place.
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick links pills (optional like your mock) -->
+        <div class="submenu" style="margin-top:14px;">
+          <a class="pill" href="current-season.html#MIDGET">Midget</a>
+          <a class="pill" href="current-season.html#PONY">Pony</a>
+          <a class="pill" href="current-season.html#PEEWEE">PeeWee</a>
+          <a class="pill" href="current-season.html#SMURF">Smurf</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid">
+          <div class="card">
+            <h2>What we’re about</h2>
+            <p>
+              Player development, discipline, and teamwork—built for the community and designed to help kids grow on and off the field.
+            </p>
+          </div>
+          <div class="card">
+            <h2>Parents</h2>
+            <p>
+              Registration, key dates, team levels, and directions will live here. Tap “Register” anytime from the top bar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> GNMFA Youth Football • All Rights Reserved
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
