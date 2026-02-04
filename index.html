@@ -6,83 +6,66 @@
   <title>GNMFA Youth Football</title>
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
-  <!-- Page-specific overrides -->
   <style>
-    /* Full-page background image */
-    body {
+    /* FULL BACKGROUND IMAGE - DO NOT CROP */
+    body{
+      margin:0;
+      min-height:100vh;
+
+      /* Keep your dark overlay */
       background:
         linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
-        url("/Buffalos/assets/img/BuffHome.png") center / cover no-repeat fixed;
+        url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
+
+      /* Prevent mobile "fixed background" glitches */
+      background-attachment: scroll;
+
+      /* If the image doesn't fill width/height, this shows behind it */
+      background-color: #060a13;
     }
 
-    /* Banner above main menu */
-    .site-banner {
-      text-align: center;
-      font-weight: 900;
+    /* Banner above main menu (200% bigger) */
+    .site-banner{
+      text-align:center;
+      font-weight: 1000;
       letter-spacing: 1.6px;
       text-transform: uppercase;
-      font-size: 12px;
-      padding: 10px 8px;
+
+      /* 200% of 12px = 24px */
+      font-size: 24px;
+      line-height: 1.15;
+
+      padding: 14px 10px;
       color: rgba(255,255,255,.95);
       background: rgba(0,0,0,.35);
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
-    /* Remove hero card visuals */
-    .hero {
-      padding: 24px 0 40px;
-    }
-
-    .hero-card {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-
-    .hero-bg,
-    .hero-card img,
-    .kicker,
-    .h1,
-    .mini-note {
-      display: none !important;
-    }
-
-    /* Center Register button */
-    .hero-content {
-      position: relative !important;
-      inset: auto !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* Remove hero block spacing since we no longer need it */
+    .hero{
       padding: 0 !important;
+      margin: 0 !important;
+    }
+    .hero-card,
+    .hero-content,
+    .hero-bg,
+    .hero-card img{
+      display:none !important;
     }
 
-    .cta-row {
-      justify-content: center;
-    }
-
-    .cta-row .btn:not(.primary) {
-      display: none !important;
-    }
-
-    /* Optional: hide lower sections & footer for clean landing page */
+    /* Optional: hide lower content & footer if you want a clean landing page */
     .section,
-    .footer {
-      display: none;
+    .footer{
+      display:none !important;
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Header -->
   <header class="topbar camo">
     <div class="container">
-
       <!-- Banner -->
-      <div class="site-banner">
-        GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
-      </div>
+      <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
 
       <div class="topbar-inner">
         <a class="brand" href="index.html" aria-label="GNMFA Home">
@@ -101,8 +84,7 @@
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html"
-             style="padding:12px 14px;border-radius:14px;">Register</a>
+          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
 
           <button class="icon-btn mobile-toggle" type="button"
                   aria-label="Open menu" aria-expanded="false"
@@ -121,24 +103,18 @@
         <a href="registration.html">Registration</a>
         <a href="directions.html">Directions</a>
       </div>
-
     </div>
   </header>
 
-  <!-- Main -->
   <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div class="hero-content">
-            <div class="cta-row">
-              <a class="btn primary" href="registration.html">Register Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Hero removed intentionally -->
+    <section class="hero"></section>
+
+    <!-- These sections are hidden by the CSS above -->
+    <section class="section"></section>
   </main>
+
+  <footer class="footer"></footer>
 
   <script src="/Buffalos/assets/site.js"></script>
 </body>
