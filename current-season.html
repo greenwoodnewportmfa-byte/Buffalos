@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Current Season | GNMFA</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <!-- SAME HEADER -->
+  <header class="topbar camo">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html" aria-label="GNMFA Home">
+          <img src="assets/img/logo.png" alt="GNMFA logo" />
+          <div class="text">
+            <div class="title">GNMFA</div>
+            <div class="subtitle">Youth Football</div>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a class="active" href="current-season.html">Current Season</a>
+          <a href="registration.html">Registration</a>
+          <a href="directions.html">Directions</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
+          <button class="icon-btn mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
+            <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" data-mobile-menu>
+        <a href="index.html">Home</a>
+        <a class="active" href="current-season.html">Current Season</a>
+        <a href="registration.html">Registration</a>
+        <a href="directions.html">Directions</a>
+      </div>
+
+      <!-- Submenu -->
+      <div class="submenu" aria-label="Season levels submenu">
+        <a class="pill" href="#MIDGET">Midget</a>
+        <a class="pill" href="#PONY">Pony</a>
+        <a class="pill" href="#PEEWEE">PeeWee</a>
+        <a class="pill" href="#SMURF">Smurf</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="card" id="MIDGET">
+        <h2>Midget</h2>
+        <p>Add schedule, coaches, and team info here.</p>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="card" id="PONY">
+        <h2>Pony</h2>
+        <p>Add schedule, coaches, and team info here.</p>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="card" id="PEEWEE">
+        <h2>PeeWee</h2>
+        <p>Add schedule, coaches, and team info here.</p>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="card" id="SMURF">
+        <h2>Smurf</h2>
+        <p>Add schedule, coaches, and team info here.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> GNMFA Youth Football</div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
