@@ -3,17 +3,94 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Directions | GNMFA</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>More | GNMFA</title>
+
+  <!-- Shared theme -->
+  <link rel="stylesheet" href="/Buffalos/assets/style.css" />
+
+  <style>
+    .page-wrap{ padding:16px 0 32px; }
+    .stack{ display:grid; gap:14px; }
+
+    .page-title{
+      font-weight:1000;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      font-size:28px;
+      text-align:center;
+      margin:10px 0 6px;
+    }
+
+    .page-sub{
+      text-align:center;
+      color:rgba(255,255,255,.78);
+      font-size:14px;
+      line-height:1.5;
+      max-width:720px;
+      margin:0 auto 14px;
+    }
+
+    .more-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    @media (min-width: 860px){
+      .more-grid{
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .more-card{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      box-shadow:0 10px 26px rgba(0,0,0,.22);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .more-card h3{
+      margin:0;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-size:14px;
+    }
+
+    .more-card p{
+      margin:0;
+      color:rgba(255,255,255,.80);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .more-card a{
+      align-self:flex-start;
+      margin-top:6px;
+      font-weight:1000;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      font-size:12px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+    }
+    .more-card a:hover{ background:rgba(255,255,255,.12); }
+  </style>
 </head>
 
 <body>
-  <!-- SAME HEADER -->
+
+  <!-- SHARED HEADER -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="index.html" aria-label="GNMFA Home">
-          <img src="assets/img/logo.png" alt="GNMFA logo" />
+        <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
+          <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text">
             <div class="title">GNMFA</div>
             <div class="subtitle">Youth Football</div>
@@ -21,43 +98,95 @@
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="current-season.html">Current Season</a>
-          <a href="registration.html">Registration</a>
-          <a class="active" href="directions.html">Directions</a>
+          <a href="/Buffalos/index.html">Home</a>
+          <a href="/Buffalos/current-season.html">Current Season</a>
+          <a href="/Buffalos/registration.html">Registration</a>
+          <a class="active" href="/Buffalos/more.html">More</a>
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
-          <button class="icon-btn mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
-            <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+          <a class="btn primary" href="/Buffalos/registration.html">Register</a>
+          <button class="icon-btn mobile-toggle"
+                  aria-label="Open menu"
+                  aria-expanded="false"
+                  data-mobile-toggle>
+            <div class="burger-lines"><span></span><span></span><span></span></div>
           </button>
         </div>
       </div>
 
       <div class="mobile-menu" data-mobile-menu>
-        <a href="index.html">Home</a>
-        <a href="current-season.html">Current Season</a>
-        <a href="registration.html">Registration</a>
-        <a class="active" href="directions.html">Directions</a>
+        <a href="/Buffalos/index.html">Home</a>
+        <a href="/Buffalos/current-season.html">Current Season</a>
+        <a href="/Buffalos/registration.html">Registration</a>
+        <a class="active" href="/Buffalos/more.html">More</a>
       </div>
     </div>
   </header>
 
-  <main class="section">
+  <main class="page-wrap">
     <div class="container">
-      <div class="card">
-        <h2>Directions</h2>
-        <p>Add your field address, parking notes, and embed Google Maps here.</p>
+      <div class="stack">
+
+        <h1 class="page-title">More</h1>
+        <p class="page-sub">
+          Additional information, resources, and helpful links for families,
+          players, coaches, and supporters of Greenwood Newport Midget Football Association.
+        </p>
+
+        <div class="more-grid">
+
+          <!-- Directions -->
+          <div class="more-card">
+            <h3>Directions & Locations</h3>
+            <p>
+              Find our home field, practice locations, and directions for away games.
+              Event-specific locations are always listed in the calendar.
+            </p>
+            <a href="/Buffalos/current-season.html">View Home Field</a>
+          </div>
+
+          <!-- Contact -->
+          <div class="more-card">
+            <h3>Contact & Questions</h3>
+            <p>
+              Need help with registration, schedules, payments, or team placement?
+              Reach out to the organization or your coach.
+            </p>
+            <a href="mailto:greenwoodnewportmfa@gmail.com">Email GNMFA</a>
+          </div>
+
+          <!-- Policies -->
+          <div class="more-card">
+            <h3>Policies & Guidelines</h3>
+            <p>
+              Code of conduct, parent expectations, player safety guidelines,
+              and league policies.
+            </p>
+            <a href="#">Coming Soon</a>
+          </div>
+
+          <!-- Sponsors / Fundraising -->
+          <div class="more-card">
+            <h3>Sponsors & Fundraising</h3>
+            <p>
+              Learn how to support GNMFA through sponsorships, fundraising events,
+              and community involvement.
+            </p>
+            <a href="#">Coming Soon</a>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">© <span id="year"></span> GNMFA Youth Football</div>
-  </footer>
+  <!-- WHITE FOOTER STRIP -->
+  <div class="site-banner">
+    GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+  </div>
 
-  <script src="assets/site.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/Buffalos/assets/site.js"></script>
 </body>
 </html>
