@@ -4,98 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GNMFA Youth Football</title>
+
+  <!-- Shared theme -->
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    /* Banner: white background, navy text (NOW AT BOTTOM) */
-    .site-banner{
-      text-align:center;
-      font-weight: 1000;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      font-size: 24px;
-      line-height: 1.15;
-      padding: 14px 10px;
-
-      background: #ffffff;
-      color: #0b1a33; /* navy */
-      border-top: 2px solid rgba(11,26,51,.15);
-    }
-
-    /* Mobile-first tightening:
-       - reduce container width a bit
-       - reduce right-side spacing so hamburger never drifts off-screen */
-    .container{ width: min(1100px, 94vw) !important; }
-
-    .topbar-inner{
-      gap: 10px !important;
-      padding: 10px 0 !important; /* tighter for mobile */
-    }
-
-    /* shrink brand a bit on mobile */
-    .brand{ gap: 10px !important; min-width: auto !important; }
-    .brand img{ width: 44px !important; height: 44px !important; }
-    .brand .title{ font-size: 16px !important; }
-    .brand .subtitle{ font-size: 11px !important; }
-
-    /* keep actions tight and prevent overflow */
-    .actions{
-      gap: 8px !important;
-      flex-shrink: 0 !important;
-    }
-
-    /* slightly smaller register button on mobile so hamburger stays visible */
-    .actions .btn.primary{
-      padding: 10px 12px !important;
-      border-radius: 14px !important;
-      font-size: 12px !important;
-      letter-spacing: .7px !important;
-      white-space: nowrap !important;
-    }
-
-    .icon-btn{
-      width: 42px !important;
-      height: 42px !important;
-      border-radius: 14px !important;
-    }
-
-    /* Background section BELOW header (no banner up top anymore) */
+    /* Index-only hero override */
     .hero-bg-section{
-      min-height: calc(100vh - 92px); /* accounts for header only (tighter mobile) */
+      min-height: calc(100vh - 92px); /* header height */
       background:
         linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
         url("/Buffalos/assets/img/BuffHome2.png") top center / contain no-repeat;
       background-color: #060a13;
     }
 
-    /* Remove old hero visuals entirely */
-    .hero,
-    .hero-card,
-    .hero-content,
-    .hero-bg,
-    .hero-card img,
-    .section,
-    .footer{
-      display:none !important;
-    }
-
-    /* Make sure body fills screen so banner sits at bottom cleanly */
-    body{
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    main{ flex: 1; }
+    /* Index does NOT stretch main */
+    main{ display:block; }
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
+  <!-- Shared Header -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="index.html" aria-label="GNMFA Home">
+        <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
           <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text">
             <div class="title">GNMFA</div>
@@ -104,19 +38,20 @@
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a class="active" href="index.html">Home</a>
-          <a href="current-season.html">Current Season</a>
-          <a href="registration.html">Registration</a>
-          <a href="directions.html">Directions</a>
+          <a class="active" href="/Buffalos/index.html">Home</a>
+          <a href="/Buffalos/current-season.html">Current Season</a>
+          <a href="/Buffalos/registration.html">Registration</a>
+          <a href="/Buffalos/directions.html">Directions</a>
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html">Register</a>
+          <a class="btn primary" href="/Buffalos/registration.html">Register</a>
 
-          <button class="icon-btn mobile-toggle" type="button"
-                  aria-label="Open menu" aria-expanded="false"
+          <button class="icon-btn mobile-toggle"
+                  aria-label="Open menu"
+                  aria-expanded="false"
                   data-mobile-toggle>
-            <div class="burger-lines" aria-hidden="true">
+            <div class="burger-lines">
               <span></span><span></span><span></span>
             </div>
           </button>
@@ -125,24 +60,23 @@
 
       <!-- Mobile Menu -->
       <div class="mobile-menu" data-mobile-menu>
-        <a class="active" href="index.html">Home</a>
-        <a href="current-season.html">Current Season</a>
-        <a href="registration.html">Registration</a>
-        <a href="directions.html">Directions</a>
+        <a class="active" href="/Buffalos/index.html">Home</a>
+        <a href="/Buffalos/current-season.html">Current Season</a>
+        <a href="/Buffalos/registration.html">Registration</a>
+        <a href="/Buffalos/directions.html">Directions</a>
       </div>
-
     </div>
   </header>
 
-  <!-- BACKGROUND IMAGE STARTS HERE -->
+  <!-- HERO IMAGE -->
   <main>
     <section class="hero-bg-section"></section>
-  </main>
 
-  <!-- Banner MOVED TO BOTTOM -->
-  <div class="site-banner">
-    GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
-  </div>
+    <!-- Banner NOW SITS DIRECTLY UNDER HERO -->
+    <div class="site-banner">
+      GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+    </div>
+  </main>
 
   <script src="/Buffalos/assets/site.js"></script>
 </body>
