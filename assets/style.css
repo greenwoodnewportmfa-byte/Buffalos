@@ -1,38 +1,58 @@
-/* =========================
-   GNMFA / Buffalos Theme
-   Mobile-first, modern
-   ========================= */
+/* =========================================
+   GNMFA / Buffalos Theme (Clean Rewrite)
+   Drop-in replacement for /Buffalos/assets/style.css
+   Mobile-first. Fixes mobile menu overflow.
+   ========================================= */
 
 :root{
   --navy:#0b1a33;
   --navy2:#0f274e;
+  --bg:#060a13;
+  --text:#e7e9ee;
   --white:#ffffff;
-  --lt:#e7e9ee;
   --muted:rgba(255,255,255,.72);
-  --grey:#aab1bc;
 
-  --shadow: 0 12px 30px rgba(0,0,0,.35);
-  --radius: 18px;
-  --radius2: 22px;
-  --max: 1100px;
+  --border:rgba(255,255,255,.10);
+  --panel:rgba(255,255,255,.06);
+  --panel2:rgba(0,0,0,.18);
+  --shadow:0 12px 30px rgba(0,0,0,.35);
+
+  --radius:18px;
+  --radius2:16px;
+  --max:1100px;
 }
 
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
+html,body{ overflow-x:hidden; } /* hard stop: no side-scroll */
 body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: var(--lt);
-  background: #060a13; /* fallback */
+  background: var(--bg);
+  color: var(--text);
 }
 
 a{ color:inherit; text-decoration:none; }
 .container{ width:min(var(--max), 92vw); margin:0 auto; }
 
-/* =========================
-   Header / Nav
-   ========================= */
+/* =========================================
+   Banner (white strip)
+   ========================================= */
+.site-banner{
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  font-size:24px;
+  line-height:1.15;
+  padding:14px 10px;
+  background: var(--white);
+  color: var(--navy);
+  border-bottom:2px solid rgba(11,26,51,.15);
+}
 
-/* camo header background */
+/* =========================================
+   Header / Nav
+   ========================================= */
 .camo{
   background:
     radial-gradient(14px 12px at 20% 30%, rgba(255,255,255,.05), transparent 60%),
@@ -44,11 +64,11 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .topbar{
-  position: sticky;
+  position:sticky;
   top:0;
-  z-index: 999;
+  z-index:999;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .topbar-inner{
@@ -56,82 +76,44 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   justify-content:space-between;
   gap:14px;
-  padding: 14px 0;
+  padding:14px 0;
 }
 
-/* Banner ABOVE nav (white bg, navy text) */
-.site-banner{
-  text-align:center;
-  font-weight: 1000;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  font-size: 24px;             /* 200% of 12px */
-  line-height: 1.15;
-  padding: 14px 10px;
-
-  background: #ffffff;
-  color: var(--navy);
-  border-bottom: 2px solid rgba(11,26,51,.15);
-}
-
-/* Brand */
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
-  min-width: 200px;
+  min-width: 190px;
 }
-
 .brand img{
-  width: 54px;
-  height: 54px;
+  width:54px;
+  height:54px;
   object-fit:contain;
-  /* If your logo is dark and you want it white on the header, uncomment:
-  filter: invert(1) brightness(2);
-  */
   filter: drop-shadow(0 8px 18px rgba(0,0,0,.45));
 }
+.brand .text{ display:flex; flex-direction:column; line-height:1.05; }
+.brand .title{ font-weight:900; letter-spacing:.8px; font-size:18px; }
+.brand .subtitle{ color:var(--muted); font-size:12px; margin-top:4px; }
 
-.brand .text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.05;
-}
-.brand .title{
-  font-weight: 900;
-  letter-spacing: .8px;
-  font-size: 18px;
-}
-.brand .subtitle{
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-/* Desktop nav */
 .nav{
   display:none;
   align-items:center;
-  gap: 22px;
-  font-weight: 800;
-  letter-spacing: .8px;
-  text-transform: uppercase;
-  font-size: 13px;
+  gap:22px;
+  font-weight:800;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  font-size:13px;
 }
 .nav a{
   opacity:.9;
-  padding: 10px 8px;
-  border-radius: 12px;
+  padding:10px 8px;
+  border-radius:12px;
   transition: opacity .15s ease, background .15s ease;
 }
 .nav a:hover{ opacity:1; background: rgba(255,255,255,.07); }
 .nav a.active{ background: rgba(255,255,255,.10); opacity:1; }
 
-.actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.actions{ display:flex; align-items:center; gap:10px; }
 
 /* Buttons */
 .btn{
@@ -139,14 +121,14 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding: 14px 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.14);
+  padding:14px 18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.09);
   color: var(--white);
-  font-weight: 1000;
-  text-transform: uppercase;
-  letter-spacing: .9px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.9px;
   cursor:pointer;
   transition: transform .1s ease, background .15s ease;
 }
@@ -163,143 +145,127 @@ a{ color:inherit; text-decoration:none; }
 
 /* Mobile hamburger */
 .icon-btn{
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.06);
-  color: var(--white);
   display:grid;
   place-items:center;
   cursor:pointer;
   transition: transform .1s ease, background .15s ease;
 }
-.icon-btn:active{ transform: scale(.98); }
 .icon-btn:hover{ background: rgba(255,255,255,.09); }
+.icon-btn:active{ transform: scale(.98); }
 
-.burger-lines{
-  width: 18px;
-  height: 12px;
-  display:grid;
-  gap:3px;
-}
-.burger-lines span{
-  display:block;
-  height:2px;
-  background: rgba(255,255,255,.90);
-  border-radius: 3px;
-}
+.burger-lines{ width:18px; height:12px; display:grid; gap:3px; }
+.burger-lines span{ height:2px; background: rgba(255,255,255,.90); border-radius:3px; }
 
-/* Mobile menu panel */
+/* Mobile menu panel (fixed overflow + full width) */
 .mobile-menu{
   display:none;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
   padding: 0 0 14px;
+  overflow-x:hidden;
 }
 .mobile-menu.open{ display:block; }
 .mobile-menu a{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding: 14px 12px;
-  border-radius: 16px;
-  margin-top: 10px;
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:14px 12px;
+  border-radius:16px;
+  margin-top:10px;
   background: rgba(0,0,0,.25);
-  border: 1px solid rgba(255,255,255,.08);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .8px;
+  border:1px solid rgba(255,255,255,.08);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  white-space:normal;
+  word-break:break-word;
 }
-.mobile-menu a.active{
-  background: rgba(255,255,255,.10);
-}
+.mobile-menu a.active{ background: rgba(255,255,255,.10); }
 
-/* =========================
-   Home page background section
-   (Use this in index.html)
-   ========================= */
+/* =========================================
+   Generic Page Layout + Cards
+   ========================================= */
+.section{ padding: 18px 0 38px; }
+.grid{ display:grid; gap:14px; }
 
-.hero-bg-section{
-  /* start immediately below the header */
-  min-height: calc(100vh - 140px); /* banner + header area estimate */
-
-  /* 50% lighter overlay vs original */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.25),
-      rgba(0,0,0,.35)
-    ),
-    url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
-
-  background-color: var(--navy); /* fallback behind image */
+.card{
+  border-radius: var(--radius);
+  border:1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 10px 26px rgba(0,0,0,.22);
+  padding:16px;
 }
 
-/* =========================
-   Submenu pills (if used)
-   ========================= */
-.submenu{
+.card h2, .section-title{
+  margin:0 0 10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:14px;
+  font-weight:1000;
+  color: rgba(255,255,255,.92);
+}
+
+.card p{
+  margin:0;
+  color: rgba(255,255,255,.80);
+  line-height:1.55;
+  font-size:14px;
+}
+
+/* Pills */
+.pill-row{
   display:flex;
+  flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  flex-wrap:wrap;
-  padding: 12px 0 0;
 }
 .pill{
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.12);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.25);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .7px;
-  font-size: 12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  font-size:12px;
   opacity:.95;
 }
 .pill:hover{ background: rgba(255,255,255,.08); opacity:1; }
 
-/* =========================
-   Content cards (for later pages)
-   ========================= */
-.section{ padding: 26px 0 50px; }
-.grid{ display:grid; gap:14px; }
-.card{
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.06);
-  box-shadow: 0 10px 26px rgba(0,0,0,.22);
-  padding: 16px;
-}
-.card h2{
-  margin:0 0 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 14px;
-}
-.card p{
-  margin:0;
-  color: rgba(255,255,255,.80);
-  line-height: 1.55;
-  font-size: 14px;
-}
-
+/* Footer */
 .footer{
-  padding: 26px 0 34px;
-  border-top: 1px solid rgba(255,255,255,.08);
+  padding:26px 0 34px;
+  border-top:1px solid rgba(255,255,255,.08);
   color: rgba(255,255,255,.65);
-  font-size: 12px;
+  font-size:12px;
 }
 
-/* =========================
+/* =========================================
+   Home hero background section (index.html)
+   ========================================= */
+.hero-bg-section{
+  min-height: calc(100vh - 140px);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35)),
+    url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
+  background-color: var(--navy);
+}
+
+/* =========================================
    Responsive
-   ========================= */
+   ========================================= */
 @media (min-width: 920px){
   .nav{ display:flex; }
   .mobile-toggle{ display:none; }
   .mobile-menu{ display:none !important; }
   .grid{ grid-template-columns: 1fr 1fr; }
-
-  /* On wider screens you may want a taller background section */
-  .hero-bg-section{
-    min-height: calc(100vh - 140px);
-  }
 }
