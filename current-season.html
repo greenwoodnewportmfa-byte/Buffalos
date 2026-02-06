@@ -4,12 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Season | GNMFA</title>
+
+  <!-- Site-wide styles -->
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
     .page-wrap{ padding:14px 0 32px; }
     .stack{ display:grid; gap:14px; }
 
+    /* Card matches your existing aesthetic */
     .card{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.10);
@@ -25,6 +28,7 @@
       font-size:14px;
       margin:0 0 10px;
       color:rgba(255,255,255,.92);
+      text-align:center;
     }
 
     /* ===============================
@@ -34,46 +38,23 @@
        =============================== */
     .season-menu{
       display:grid;
-      gap:12px;
-      grid-template-columns:1fr; /* mobile */
+      gap:14px;
+      grid-template-columns:1fr;
     }
-
     @media (min-width: 720px){
       .season-menu{
-        grid-template-columns: 3fr 1fr; /* 75% / 25% */
+        grid-template-columns: 3fr 1fr;
         align-items:stretch;
       }
-      .season-block{ height:100%; }
     }
 
-    .season-block{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      padding:14px;
-
-      display:flex;
-      flex-direction:column;
-      align-items:center; /* CENTER CONTENT */
-    }
-
-    .season-label{
-      font-weight:1000;
-      letter-spacing:1.4px;
-      text-transform:uppercase;
-      font-size:12px;
-      margin:0 0 12px;
-      color:rgba(255,255,255,.85);
-      text-align:center;
-    }
-
+    /* Pills / buttons */
     .pill-row{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      justify-content:center; /* CENTER BUTTONS */
+      justify-content:center;
     }
-
     .pill{
       padding:10px 16px;
       border-radius:999px;
@@ -88,11 +69,21 @@
     }
     .pill:hover{ background:rgba(255,255,255,.08); opacity:1; }
 
-    /* Map button */
+    /* Home field centering */
+    .home-field{
+      text-align:center;
+    }
+    .home-field .address{
+      color:rgba(255,255,255,.85);
+      line-height:1.5;
+      margin: 0 0 10px;
+      text-align:center;
+    }
     .map-link{
       display:inline-flex;
       gap:10px;
       align-items:center;
+      justify-content:center;
       padding:12px 14px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.14);
@@ -101,6 +92,7 @@
       letter-spacing:.6px;
       text-transform:uppercase;
       font-size:12px;
+      margin:0 auto;
     }
     .map-link:hover{ background:rgba(255,255,255,.12); }
 
@@ -129,7 +121,6 @@
       border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.18);
     }
-
     .cal-controls .hint{
       font-size:12px;
       color:rgba(255,255,255,.72);
@@ -137,14 +128,12 @@
       margin:0;
       text-align:center;
     }
-
     .check-row{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      justify-content:center; /* center checkboxes */
+      justify-content:center;
     }
-
     .check-pill{
       display:inline-flex;
       align-items:center;
@@ -156,14 +145,12 @@
       user-select:none;
       cursor:pointer;
     }
-
     .check-pill input{
       width:18px;
       height:18px;
-      accent-color:#0b1a33; /* navy */
+      accent-color:#0b1a33;
       cursor:pointer;
     }
-
     .check-pill span{
       font-weight:900;
       text-transform:uppercase;
@@ -171,7 +158,6 @@
       font-size:12px;
       color:rgba(255,255,255,.90);
     }
-
     .cal-actions{
       display:flex;
       gap:10px;
@@ -179,7 +165,6 @@
       flex-wrap:wrap;
       margin-top:4px;
     }
-
     .small-btn{
       display:inline-flex;
       align-items:center;
@@ -199,6 +184,7 @@
 </head>
 
 <body>
+  <!-- Header (unchanged structure, simplified inline styles) -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
@@ -218,10 +204,7 @@
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="/Buffalos/registration.html"
-             style="padding:10px 12px;border-radius:14px;font-size:12px;">
-            Register
-          </a>
+          <a class="btn primary" href="/Buffalos/registration.html">Register</a>
           <button class="icon-btn mobile-toggle" type="button"
                   aria-label="Open menu" aria-expanded="false"
                   data-mobile-toggle>
@@ -245,44 +228,42 @@
     <div class="container">
       <div class="stack">
 
-        <!-- FALL / SPRING -->
+        <!-- Season cards (Fall is 75%, Spring is 25% on desktop) -->
         <div class="season-menu">
-          <div class="season-block">
-            <div class="season-label">Fall</div>
+          <section class="card">
+            <h2 class="section-title">Fall</h2>
             <div class="pill-row">
               <a class="pill" href="/Buffalos/teams/midget.html">Midget</a>
               <a class="pill" href="/Buffalos/teams/pony.html">Pony</a>
               <a class="pill" href="/Buffalos/teams/peewee.html">PeeWee</a>
               <a class="pill" href="/Buffalos/teams/smurf.html">Smurf</a>
             </div>
-          </div>
+          </section>
 
-          <div class="season-block">
-            <div class="season-label">Spring</div>
+          <section class="card">
+            <h2 class="section-title">Spring</h2>
             <div class="pill-row">
               <a class="pill" href="/Buffalos/teams/flag-football.html">Flag Football</a>
             </div>
-          </div>
+          </section>
         </div>
 
-        <!-- FIELD -->
-        <div class="card">
-          <div class="section-title">Home Field</div>
-          <div style="color:rgba(255,255,255,.85); line-height:1.5; margin-bottom:10px;">
-            208 W Juniata Pkwy, Millerstown, PA 17062
-          </div>
+        <!-- Home Field (centered) -->
+        <section class="card home-field">
+          <h2 class="section-title">Home Field</h2>
+          <p class="address">208 W Juniata Pkwy, Millerstown, PA 17062</p>
           <a class="map-link"
              href="https://www.google.com/maps/search/?api=1&query=208%20W%20Juniata%20Pkwy%2C%20Millerstown%2C%20PA%2017062"
              target="_blank" rel="noopener">
             Open in Google Maps
           </a>
-        </div>
+        </section>
 
-        <!-- CALENDAR -->
-        <div class="card">
-          <div class="section-title">Calendars (Schedule View)</div>
+        <!-- Calendar -->
+        <section class="card">
+          <h2 class="section-title">Calendars (Schedule View)</h2>
 
-          <!-- CHECKBOX CONTROLS -->
+          <!-- Checkbox controls -->
           <div class="cal-controls" aria-label="Calendar filters">
             <p class="hint">
               Select one or more calendars to display. Your selections are saved on this device.
@@ -293,27 +274,22 @@
                 <input type="checkbox" class="cal-check" data-cal="main" />
                 <span>Main</span>
               </label>
-
               <label class="check-pill">
                 <input type="checkbox" class="cal-check" data-cal="midget" />
                 <span>Midget</span>
               </label>
-
               <label class="check-pill">
                 <input type="checkbox" class="cal-check" data-cal="pony" />
                 <span>Pony</span>
               </label>
-
               <label class="check-pill">
                 <input type="checkbox" class="cal-check" data-cal="peewee" />
                 <span>PeeWee</span>
               </label>
-
               <label class="check-pill">
                 <input type="checkbox" class="cal-check" data-cal="smurf" />
                 <span>Smurf</span>
               </label>
-
               <label class="check-pill">
                 <input type="checkbox" class="cal-check" data-cal="flag" />
                 <span>Flag</span>
@@ -330,10 +306,9 @@
           <div class="cal-wrap">
             <iframe id="calendarFrame"
               src="https://calendar.google.com/calendar/embed?ctz=America%2FNew_York&mode=AGENDA&src=greenwoodnewportmfa%40gmail.com"
-              scrolling="no">
-            </iframe>
+              scrolling="no"></iframe>
           </div>
-        </div>
+        </section>
 
       </div>
     </div>
@@ -358,7 +333,6 @@
     const frame = document.getElementById("calendarFrame");
     const checks = Array.from(document.querySelectorAll(".cal-check"));
 
-    // --------- Helpers ----------
     function buildCalendarUrl(selectedKeys){
       const url = new URL("https://calendar.google.com/calendar/embed");
       url.searchParams.set("ctz", "America/New_York");
@@ -379,11 +353,7 @@
     }
 
     function saveSelection(keys){
-      try{
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(keys));
-      }catch(e){
-        // ignore storage errors (private mode, etc.)
-      }
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(keys)); }catch(e){}
     }
 
     function loadSelection(){
@@ -392,7 +362,6 @@
         if(!raw) return null;
         const parsed = JSON.parse(raw);
         if(!Array.isArray(parsed)) return null;
-        // keep only valid keys
         return parsed.filter(k => Object.prototype.hasOwnProperty.call(CALS, k));
       }catch(e){
         return null;
@@ -405,7 +374,7 @@
       if(persist) saveSelection(keys);
     }
 
-    // --------- Wire up events ----------
+    // Events
     checks.forEach(c => c.addEventListener("change", () => updateCalendar({persist:true})));
 
     document.getElementById("calSelectAll").addEventListener("click", () => {
@@ -415,7 +384,7 @@
 
     document.getElementById("calClear").addEventListener("click", () => {
       checks.forEach(c => c.checked = false);
-      updateCalendar({persist:true}); // iframe falls back to main
+      updateCalendar({persist:true});
     });
 
     document.getElementById("calMainOnly").addEventListener("click", () => {
@@ -423,15 +392,14 @@
       updateCalendar({persist:true});
     });
 
-    // --------- Init from localStorage ----------
+    // Init
     const saved = loadSelection();
     if(saved && saved.length){
       setSelectedKeys(saved);
     }else{
-      // default state if nothing saved yet
       setSelectedKeys(["main"]);
     }
-    updateCalendar({persist:false}); // don't overwrite stored value on first paint
+    updateCalendar({persist:false});
   </script>
 </body>
 </html>
