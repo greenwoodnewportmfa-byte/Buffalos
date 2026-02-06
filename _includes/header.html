@@ -1,0 +1,54 @@
+<header class="topbar camo">
+  <div class="container">
+
+    <div class="topbar-inner">
+      <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
+        <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
+        <div class="text">
+          <div class="title">GNMFA</div>
+          <div class="subtitle">Youth Football</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a {% if page.nav == "home" %}class="active"{% endif %} href="/Buffalos/index.html">Home</a>
+        <a {% if page.nav == "season" %}class="active"{% endif %} href="/Buffalos/current-season.html">Current Season</a>
+        <a {% if page.nav == "registration" %}class="active"{% endif %} href="/Buffalos/registration.html">Registration</a>
+        <a {% if page.nav == "directions" %}class="active"{% endif %} href="/Buffalos/directions.html">Directions</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn primary" href="/Buffalos/registration.html">Register</a>
+        <button class="icon-btn mobile-toggle"
+                aria-label="Open menu"
+                aria-expanded="false"
+                data-mobile-toggle>
+          <div class="burger-lines"><span></span><span></span><span></span></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- OPTIONAL BREADCRUMBS -->
+    {% if page.breadcrumbs %}
+    <nav class="breadcrumbs">
+      {% for crumb in page.breadcrumbs %}
+        {% if forloop.last %}
+          <span class="crumb current">{{ crumb.label }}</span>
+        {% else %}
+          <a class="crumb" href="{{ crumb.url }}">{{ crumb.label }}</a>
+          <span class="sep">›</span>
+        {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="/Buffalos/index.html">Home</a>
+      <a href="/Buffalos/current-season.html">Current Season</a>
+      <a href="/Buffalos/registration.html">Registration</a>
+      <a href="/Buffalos/directions.html">Directions</a>
+    </div>
+
+  </div>
+</header>
