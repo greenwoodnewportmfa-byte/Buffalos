@@ -1,93 +1,104 @@
-<!-- ==================================================
-     /Buffalos/teams/midget.html
-================================================== -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Midget | GNMFA</title>
+  <title>2026 Midgets | GNMFA</title>
+
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    .page-wrap{ padding:14px 0 32px; }
-    .stack{ display:grid; gap:14px; }
+    .page-wrap{ padding:16px 0 28px; }
+    .stack{ display:grid; gap:16px; }
 
-    .card{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.06);
-      box-shadow:0 10px 26px rgba(0,0,0,.22);
-      padding:14px;
+    /* =========================
+       TEAM SWITCHER (PERSISTENT)
+       ========================= */
+    .team-switcher{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:6px;
     }
-
-    .page-title{
+    .team-switcher a{
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(0,0,0,.25);
       font-weight:1000;
-      letter-spacing:1px;
       text-transform:uppercase;
-      margin:0 0 6px;
-      font-size:18px;
-      color:rgba(255,255,255,.95);
+      letter-spacing:.7px;
+      font-size:12px;
+      opacity:.85;
     }
-    .muted{ color:rgba(255,255,255,.78); font-size:13px; line-height:1.5; }
+    .team-switcher a.active{
+      background:linear-gradient(135deg,#1b3a72,#0b1a33);
+      opacity:1;
+    }
 
-    /* Staff layout */
+    /* =========================
+       PAGE TITLE (NO CARD)
+       ========================= */
+    .team-title{
+      text-align:center;
+      font-weight:1000;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      font-size:36px; /* ~200% */
+      margin:6px 0 2px;
+      color:#ffffff;
+    }
+
+    /* =========================
+       STAFF BLOCKS
+       ========================= */
     .staff-grid{
       display:grid;
-      gap:14px;
+      gap:16px;
     }
     @media (min-width: 860px){
-      .staff-grid{
-        grid-template-columns: 1fr 1fr;
-        align-items:start;
-      }
+      .staff-grid{ grid-template-columns:1fr 1fr; }
     }
 
-    .group-title{
+    .staff-card{
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 10px 26px rgba(0,0,0,.25);
+    }
+
+    .staff-card.football{ background:#0b1a33; }
+    .staff-card.cheer{ background:#f3a6c8; color:#1b1b1b; }
+
+    .staff-title{
       font-weight:1000;
       letter-spacing:1px;
       text-transform:uppercase;
-      font-size:13px;
-      margin:0 0 10px;
-      color:rgba(255,255,255,.90);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .badge{
-      font-size:11px;
-      font-weight:1000;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.20);
-      color:rgba(255,255,255,.86);
-      white-space:nowrap;
+      font-size:14px;
+      margin:0 0 12px;
     }
 
     .coach-grid{ display:grid; gap:10px; }
+
     .coach-row{
       display:flex;
       justify-content:space-between;
       gap:12px;
       padding:10px 12px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
+      background:rgba(255,255,255,.08);
     }
+
+    .cheer .coach-row{ background:rgba(255,255,255,.35); }
+
     .coach-role{
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.7px;
+      letter-spacing:.6px;
       font-size:12px;
-      color:rgba(255,255,255,.88);
       flex:1;
     }
     .coach-name{
-      color:rgba(255,255,255,.82);
       font-size:13px;
       text-align:right;
       flex:1;
@@ -96,68 +107,80 @@
       text-overflow:ellipsis;
     }
 
-    /* Calendar */
-    .cal-link{
-      display:inline-flex;
+    /* =========================
+       CALENDAR
+       ========================= */
+    .calendar-header{
+      display:flex;
+      justify-content:space-between;
       align-items:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
-      font-weight:900;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      font-size:12px;
+      gap:12px;
+      margin-bottom:10px;
     }
-    .cal-link:hover{ background:rgba(255,255,255,.12); }
+    .calendar-header h2{
+      margin:0;
+      font-size:14px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+    .cal-link{
+      font-weight:1000;
+      font-size:12px;
+      text-transform:uppercase;
+      text-decoration:underline;
+    }
 
     .cal-wrap{
-      margin-top:10px;
       border-radius:18px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.15);
+      border:1px solid rgba(255,255,255,.12);
     }
     .cal-wrap iframe{
       width:100%;
       height:70vh;
       min-height:560px;
       border:0;
-      display:block;
     }
 
-    /* Images (bottom) */
+    /* =========================
+       IMAGES
+       ========================= */
+    .images-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .images-header h2{
+      margin:0;
+      font-size:14px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
     .photo{
       width:100%;
-      height:280px;
+      height:300px;
       border-radius:18px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+      background:#000;
     }
-    .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-    .folder-link{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      margin-top:10px;
-      text-decoration:underline;
-      color:rgba(255,255,255,.88);
-      font-weight:900;
-      letter-spacing:.4px;
-      text-transform:uppercase;
-      font-size:12px;
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- SHARED HEADER -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
+        <a class="brand" href="/Buffalos/index.html">
           <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text">
             <div class="title">GNMFA</div>
@@ -165,7 +188,7 @@
           </div>
         </a>
 
-        <nav class="nav" aria-label="Primary navigation">
+        <nav class="nav">
           <a href="/Buffalos/index.html">Home</a>
           <a class="active" href="/Buffalos/current-season.html">Current Season</a>
           <a href="/Buffalos/registration.html">Registration</a>
@@ -173,11 +196,9 @@
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="/Buffalos/registration.html"
-             style="padding:10px 12px;border-radius:14px;font-size:12px;">Register</a>
-          <button class="icon-btn mobile-toggle" type="button"
-                  aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
-            <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+          <a class="btn primary" href="/Buffalos/registration.html">Register</a>
+          <button class="icon-btn mobile-toggle" data-mobile-toggle>
+            <div class="burger-lines"><span></span><span></span><span></span></div>
           </button>
         </div>
       </div>
@@ -195,19 +216,22 @@
     <div class="container">
       <div class="stack">
 
-        <div class="card">
-          <div class="page-title">Midget</div>
-          <div class="muted">Football and Cheer coaching staff, schedule, and images.</div>
+        <!-- TEAM SWITCHER -->
+        <div class="team-switcher">
+          <a class="active" href="/Buffalos/teams/midget.html">Midget</a>
+          <a href="/Buffalos/teams/pony.html">Pony</a>
+          <a href="/Buffalos/teams/peewee.html">PeeWee</a>
+          <a href="/Buffalos/teams/smurf.html">Smurf</a>
+          <a href="/Buffalos/teams/flag-football.html">Flag</a>
         </div>
 
-        <div class="staff-grid">
-          <!-- FOOTBALL STAFF -->
-          <div class="card">
-            <div class="group-title">
-              Football Coaching Staff
-              <span class="badge">Football</span>
-            </div>
+        <!-- TITLE -->
+        <div class="team-title">2026 Midgets</div>
 
+        <!-- STAFF -->
+        <div class="staff-grid">
+          <div class="staff-card football">
+            <div class="staff-title">Coaching Staff</div>
             <div class="coach-grid">
               <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
               <div class="coach-row"><div class="coach-role">Offensive Coordinator</div><div class="coach-name">TBD</div></div>
@@ -217,29 +241,23 @@
             </div>
           </div>
 
-          <!-- CHEER STAFF -->
-          <div class="card">
-            <div class="group-title">
-              Cheer Coaching Staff
-              <span class="badge">Cheer</span>
-            </div>
-
+          <div class="staff-card cheer">
+            <div class="staff-title">Cheer Staff</div>
             <div class="coach-grid">
-              <div class="coach-row"><div class="coach-role">Head Cheer Coach</div><div class="coach-name">TBD</div></div>
-              <div class="coach-row"><div class="coach-role">Stunt Coach</div><div class="coach-name">TBD</div></div>
-              <div class="coach-row"><div class="coach-role">Sideline Coach</div><div class="coach-name">TBD</div></div>
-              <div class="coach-row"><div class="coach-role">Jr. Assistant</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
+              <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
             </div>
           </div>
         </div>
 
         <!-- CALENDAR -->
         <div class="card">
-          <div class="page-title" style="font-size:16px;margin-bottom:6px;">Calendar (Schedule View)</div>
-
-          <a class="cal-link"
-             href="https://calendar.google.com/calendar/embed?src=edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
-             target="_blank" rel="noopener">Add this Calendar to your Device</a>
+          <div class="calendar-header">
+            <h2>Calendar</h2>
+            <a class="cal-link"
+               href="https://calendar.google.com/calendar/embed?src=edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
+               target="_blank">Add this Calendar to your Device</a>
+          </div>
 
           <div class="cal-wrap">
             <iframe
@@ -248,18 +266,16 @@
           </div>
         </div>
 
-        <!-- IMAGES (BOTTOM) -->
+        <!-- IMAGES -->
         <div class="card">
-          <div class="page-title" style="font-size:16px;margin-bottom:6px;">Images</div>
-          <div class="muted">Rotates on refresh. (Add direct image URLs later.)</div>
-
-          <div class="photo" style="margin-top:10px;">
-            <img id="teamPhoto" alt="Midget team photo" />
+          <div class="images-header">
+            <h2>Images</h2>
+            <a class="cal-link" href="/Buffalos/assets/img/">Open Folder</a>
           </div>
 
-          <a class="folder-link"
-             href="https://drive.google.com/drive/folders/1mNtJIttBjmYIfdVGfEc_NuypBJrXAW8o?usp=sharing"
-             target="_blank" rel="noopener">Open Photo Folder</a>
+          <div class="photo">
+            <img id="teamPhoto" alt="Midget team photo">
+          </div>
         </div>
 
       </div>
@@ -270,17 +286,18 @@
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
-    // NOTE: Google Drive *folder* links won't work in <img src>.
-    // Paste DIRECT image URLs into this list.
-    const TEAM_PHOTO_URLS = [
-      // "https://example.com/photo1.jpg",
-      // "https://example.com/photo2.jpg"
-    ];
-    const fallback = "/Buffalos/assets/img/BuffHome.png";
+    const MAX_IMAGES = 10;
+    const images = [];
+
+    for(let i=1;i<=MAX_IMAGES;i++){
+      const num = String(i).padStart(2,"0");
+      images.push(`/Buffalos/assets/img/Midget${num}.png`);
+    }
+
     const img = document.getElementById("teamPhoto");
-    img.src = TEAM_PHOTO_URLS.length
-      ? TEAM_PHOTO_URLS[Math.floor(Math.random() * TEAM_PHOTO_URLS.length)]
-      : fallback;
+    const selected = images[Math.floor(Math.random()*images.length)];
+    img.onerror = () => img.src = "/Buffalos/assets/img/BuffHome2.png";
+    img.src = selected;
   </script>
 </body>
 </html>
