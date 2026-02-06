@@ -4,16 +4,149 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Registration | GNMFA</title>
-  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- Shared theme -->
+  <link rel="stylesheet" href="/Buffalos/assets/style.css" />
+
+  <style>
+    .page-wrap{ padding:16px 0 28px; }
+
+    /* Make the form block full-width */
+    .wide{
+      width: min(1300px, 96vw);
+      margin: 0 auto;
+    }
+
+    .reg-card{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+      padding: 14px;
+    }
+
+    .reg-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .reg-title{
+      margin:0;
+      font-weight:1000;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:14px;
+      color: rgba(255,255,255,.92);
+    }
+
+    .reg-sub{
+      margin:8px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.45;
+      max-width: 780px;
+    }
+
+    .pay-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    .cashapp-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.10);
+      font-weight:1000;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      font-size:12px;
+      white-space:nowrap;
+      cursor:pointer;
+    }
+    .cashapp-btn:hover{ background: rgba(255,255,255,.14); }
+
+    .pay-note{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:flex-end;
+      text-align:right;
+      max-width: 360px;
+      color: rgba(255,255,255,.78);
+      font-size:12px;
+      line-height:1.35;
+    }
+
+    .pay-note strong{ color:#fff; }
+
+    .form-wrap{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .form-wrap iframe{
+      width:100%;
+      height: 980px;
+      border:0;
+      display:block;
+    }
+
+    /* Bottom-left payment block */
+    .reg-footer-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .pay-left{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      color: rgba(255,255,255,.78);
+      font-size:12px;
+      line-height:1.35;
+      max-width: 520px;
+    }
+    .pay-left strong{ color:#fff; }
+
+    .pay-right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    @media (max-width: 520px){
+      .pay-note{ align-items:flex-start; text-align:left; max-width: 100%; }
+      .reg-header{ align-items:flex-start; }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- SAME HEADER -->
+
+  <!-- NEW SHARED HEADER -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="index.html" aria-label="GNMFA Home">
-          <img src="assets/img/logo.png" alt="GNMFA logo" />
+        <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
+          <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text">
             <div class="title">GNMFA</div>
             <div class="subtitle">Youth Football</div>
@@ -21,79 +154,95 @@
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="current-season.html">Current Season</a>
-          <a class="active" href="registration.html">Registration</a>
-          <a href="directions.html">Directions</a>
+          <a href="/Buffalos/index.html">Home</a>
+          <a href="/Buffalos/current-season.html">Current Season</a>
+          <a class="active" href="/Buffalos/registration.html">Registration</a>
+          <a href="/Buffalos/directions.html">Directions</a>
         </nav>
 
         <div class="actions">
-          <a class="btn primary" href="registration.html" style="padding:12px 14px;border-radius:14px;">Register</a>
-          <button class="icon-btn mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-mobile-toggle>
+          <a class="btn primary" href="/Buffalos/registration.html">Register</a>
+
+          <button class="icon-btn mobile-toggle" type="button"
+                  aria-label="Open menu" aria-expanded="false"
+                  data-mobile-toggle>
             <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
           </button>
         </div>
       </div>
 
       <div class="mobile-menu" data-mobile-menu>
-        <a href="index.html">Home</a>
-        <a href="current-season.html">Current Season</a>
-        <a class="active" href="registration.html">Registration</a>
-        <a href="directions.html">Directions</a>
+        <a href="/Buffalos/index.html">Home</a>
+        <a href="/Buffalos/current-season.html">Current Season</a>
+        <a class="active" href="/Buffalos/registration.html">Registration</a>
+        <a href="/Buffalos/directions.html">Directions</a>
       </div>
     </div>
   </header>
 
-  <main class="section">
-    <div class="container">
-      <div class="grid">
-        <div class="card">
-          <h2>Online Registration</h2>
-          <p style="margin-bottom:12px;">
-            Embed your Google Form here. Use a Google Form that writes responses to a Google Sheet.
-          </p>
+  <main class="page-wrap">
+    <div class="wide">
+      <section class="reg-card">
 
-          <!-- Replace the src with your Google Form embed URL -->
-          <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.10);">
-            <iframe
-              title="GNMFA Registration Form"
-              src="PASTE_YOUR_GOOGLE_FORM_EMBED_URL_HERE"
-              width="100%"
-              height="820"
-              frameborder="0"
-              marginheight="0"
-              marginwidth="0"
-              style="background: rgba(255,255,255,.03);">
-            </iframe>
+        <!-- TOP ROW: Title/Info + TOP-RIGHT payment -->
+        <div class="reg-header">
+          <div>
+            <h2 class="reg-title">Online Registration</h2>
+            <p class="reg-sub">
+              Complete the registration form below. After you submit, please pay the registration fee.
+              <strong>CashApp payments must include the Player Name + Age Group</strong> in the CashApp note.
+              You may also pay by <strong>Cash</strong> or <strong>Check</strong>.
+            </p>
+          </div>
+
+          <!-- TOP RIGHT payment -->
+          <div class="pay-cta">
+            <!-- Replace href with your real Cash App link or $Cashtag link -->
+            <a class="cashapp-btn" href="https://cash.app/$kephartSamuel" target="_blank" rel="noopener">
+              Pay with CashApp
+            </a>
+
+            <div class="pay-note">
+              <div><strong>CashApp Note Required:</strong></div>
+              <div>Player Name + Age Group</div>
+              <div><strong>Also Accepted:</strong> Cash or Check</div>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <h2>Pay Registration</h2>
-          <p style="margin-bottom:12px;">
-            Add a payment option (Square, PayPal, Stripe Payment Link, etc.). You can drop a payment link button below.
-          </p>
-
-          <!-- Replace href with your payment link -->
-          <a class="btn primary" href="PASTE_YOUR_PAYMENT_LINK_HERE" target="_blank" rel="noopener">
-            Pay Now
-          </a>
-
-          <div style="height:12px"></div>
-
-          <p style="font-size:12px; color:rgba(255,255,255,.75); line-height:1.45;">
-            Tip: payment links are easiest on mobile. If you want card + ACH, Square or Stripe Payment Links work well.
-          </p>
+        <!-- FORM (FULL WIDTH) -->
+        <div class="form-wrap">
+          <iframe
+            title="GNMFA Registration Form"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfgbBYwvDOM_4DM8P-tkcRN1DIWt2omDzg7Wa_0ozbfprITSg/viewform?embedded=true"
+            loading="lazy">
+          </iframe>
         </div>
-      </div>
+
+        <!-- BOTTOM ROW: bottom-left instructions + bottom-right CashApp button -->
+        <div class="reg-footer-row">
+          <!-- BOTTOM LEFT payment info -->
+          <div class="pay-left">
+            <div><strong>Payment Options:</strong></div>
+            <div><strong>CashApp:</strong> Please include <strong>Player Name + Age Group</strong> in the note.</div>
+            <div><strong>Cash / Check:</strong> Accepted as well (coordinate with your coach or the organization).</div>
+          </div>
+
+          <!-- BOTTOM button -->
+          <div class="pay-right">
+            <a class="cashapp-btn" href="https://cash.app/$kephartSamuel" target="_blank" rel="noopener">
+              Pay with CashApp
+            </a>
+          </div>
+        </div>
+
+      </section>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">© <span id="year"></span> GNMFA Youth Football</div>
-  </footer>
+  <!-- SAME WHITE FOOTER STRIP -->
+  <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
 
-  <script src="assets/site.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/Buffalos/assets/site.js"></script>
 </body>
 </html>
