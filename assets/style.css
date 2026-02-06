@@ -1,96 +1,6 @@
-/* Breadcrumbs */
-.breadcrumbs{
-  display:flex;
-  gap:6px;
-  align-items:center;
-  font-size:12px;
-  margin-top:6px;
-  color:rgba(255,255,255,.75);
-}
-
-.breadcrumbs .crumb{
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-  color:rgba(255,255,255,.85);
-}
-
-.breadcrumbs .crumb.current{
-  color:#ffffff;
-}
-
-.breadcrumbs .sep{
-  opacity:.5;
-}
-
-/* Mobile safety */
-@media (max-width: 720px){
-  .breadcrumbs{
-    flex-wrap:wrap;
-    row-gap:4px;
-  }
-}
-
-
-/* ===== Mobile overflow hard-stop (fixes right side cut-off) ===== */
-html, body { width: 100%; overflow-x: hidden; }
-* { max-width: 100%; }
-
-/* If any child accidentally uses 100vw, it can cause overflow with padding */
-.page-wrap, .container, .card, .season-menu, .cal-controls, .cal-wrap { overflow-x: clip; }
-
-/* Match index page mobile tightening */
-.container{ width: min(1100px, 94vw) !important; }
-
-.topbar-inner{
-  gap: 10px !important;
-  padding: 10px 0 !important;
-}
-
-/* shrink brand a bit on mobile */
-.brand{ gap: 10px !important; min-width: auto !important; }
-.brand img{ width: 44px !important; height: 44px !important; }
-.brand .title{ font-size: 16px !important; }
-.brand .subtitle{ font-size: 11px !important; }
-
-/* keep actions tight */
-.actions{ gap: 8px !important; flex-shrink: 0 !important; }
-.actions .btn.primary{
-  padding: 10px 12px !important;
-  border-radius: 14px !important;
-  font-size: 12px !important;
-  letter-spacing: .7px !important;
-  white-space: nowrap !important;
-}
-.icon-btn{
-  width: 42px !important;
-  height: 42px !important;
-  border-radius: 14px !important;
-}
-
-/* Calendar selector pills: never exceed viewport */
-.check-row{
-  width: 100%;
-  box-sizing: border-box;
-}
-.check-pill{
-  max-width: 100%;
-}
-.check-pill span{
-  max-width: 18ch;          /* prevents long text from forcing width */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Make iframe wrapper safe */
-.cal-wrap{ width: 100%; }
-.cal-wrap iframe{ width: 100% !important; }
-
 /* =========================================
-   GNMFA / Buffalos Theme (Clean Rewrite)
-   Drop-in replacement for /Buffalos/assets/style.css
-   Mobile-first. Fixes mobile menu overflow.
+   GNMFA / Buffalos Theme (Single Source of Truth)
+   Mobile-first. Fixes mobile overflow + keeps header tight.
    ========================================= */
 
 :root{
@@ -111,17 +21,25 @@ html, body { width: 100%; overflow-x: hidden; }
   --max:1100px;
 }
 
+/* Base reset */
 *{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-html,body{ overflow-x:hidden; } /* hard stop: no side-scroll */
+html,body{ margin:0; padding:0; width:100%; }
 body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
+  overflow-x:hidden; /* hard stop: no side-scroll */
 }
 
+/* Safer overflow fix (avoid * max-width hammer) */
+img, video, iframe{ max-width:100%; height:auto; }
 a{ color:inherit; text-decoration:none; }
-.container{ width:min(var(--max), 92vw); margin:0 auto; }
+
+/* Container (single definition) */
+.container{
+  width: min(var(--max), 94vw);
+  margin: 0 auto;
+}
 
 /* =========================================
    Banner (white strip)
@@ -136,7 +54,7 @@ a{ color:inherit; text-decoration:none; }
   padding:14px 10px;
   background: var(--white);
   color: var(--navy);
-  border-bottom:2px solid rgba(11,26,51,.15);
+  border-top: 2px solid rgba(11,26,51,.15);
 }
 
 /* =========================================
@@ -160,30 +78,33 @@ a{ color:inherit; text-decoration:none; }
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 
+/* Mobile-first tightening (your index behavior) */
 .topbar-inner{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:14px;
-  padding:14px 0;
+  gap:10px;
+  padding:10px 0; /* tighter */
 }
 
+/* Brand */
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
-  min-width: 190px;
+  gap:10px;
+  min-width:auto;
 }
 .brand img{
-  width:54px;
-  height:54px;
+  width:44px;
+  height:44px;
   object-fit:contain;
   filter: drop-shadow(0 8px 18px rgba(0,0,0,.45));
 }
 .brand .text{ display:flex; flex-direction:column; line-height:1.05; }
-.brand .title{ font-weight:900; letter-spacing:.8px; font-size:18px; }
-.brand .subtitle{ color:var(--muted); font-size:12px; margin-top:4px; }
+.brand .title{ font-weight:900; letter-spacing:.8px; font-size:16px; }
+.brand .subtitle{ color:var(--muted); font-size:11px; margin-top:4px; }
 
+/* Desktop nav hidden on mobile */
 .nav{
   display:none;
   align-items:center;
@@ -202,7 +123,13 @@ a{ color:inherit; text-decoration:none; }
 .nav a:hover{ opacity:1; background: rgba(255,255,255,.07); }
 .nav a.active{ background: rgba(255,255,255,.10); opacity:1; }
 
-.actions{ display:flex; align-items:center; gap:10px; }
+/* Actions */
+.actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
 
 /* Buttons */
 .btn{
@@ -225,6 +152,12 @@ a{ color:inherit; text-decoration:none; }
 .btn:active{ transform: scale(.99); }
 
 .btn.primary{
+  padding:10px 12px;          /* keep small on mobile */
+  border-radius:14px;
+  font-size:12px;
+  letter-spacing:.7px;
+  white-space:nowrap;
+
   background: linear-gradient(135deg, #1b3a72, #0b1a33);
   border-color: rgba(255,255,255,.18);
 }
@@ -234,8 +167,8 @@ a{ color:inherit; text-decoration:none; }
 
 /* Mobile hamburger */
 .icon-btn{
-  width:44px;
-  height:44px;
+  width:42px;
+  height:42px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.06);
@@ -250,7 +183,7 @@ a{ color:inherit; text-decoration:none; }
 .burger-lines{ width:18px; height:12px; display:grid; gap:3px; }
 .burger-lines span{ height:2px; background: rgba(255,255,255,.90); border-radius:3px; }
 
-/* Mobile menu panel (fixed overflow + full width) */
+/* Mobile menu panel (no overflow) */
 .mobile-menu{
   display:none;
   width:100%;
@@ -278,8 +211,31 @@ a{ color:inherit; text-decoration:none; }
 .mobile-menu a.active{ background: rgba(255,255,255,.10); }
 
 /* =========================================
+   Breadcrumbs (optional under header)
+   ========================================= */
+.breadcrumbs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+  font-size:12px;
+  margin:6px 0 0;
+  color:rgba(255,255,255,.75);
+}
+.breadcrumbs .crumb{
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  color:rgba(255,255,255,.85);
+}
+.breadcrumbs .crumb:hover{ color:#fff; }
+.breadcrumbs .crumb.current{ color:#ffffff; }
+.breadcrumbs .sep{ opacity:.5; }
+
+/* =========================================
    Generic Page Layout + Cards
    ========================================= */
+.page-wrap{ padding:14px 0 32px; overflow-x:hidden; }
 .section{ padding: 18px 0 38px; }
 .grid{ display:grid; gap:14px; }
 
@@ -289,6 +245,7 @@ a{ color:inherit; text-decoration:none; }
   background: var(--panel);
   box-shadow: 0 10px 26px rgba(0,0,0,.22);
   padding:16px;
+  overflow-x:hidden; /* prevent any inner overflow */
 }
 
 .card h2, .section-title{
@@ -330,23 +287,23 @@ a{ color:inherit; text-decoration:none; }
 }
 .pill:hover{ background: rgba(255,255,255,.08); opacity:1; }
 
-/* Footer */
+/* =========================================
+   Home hero background section (index.html)
+   ========================================= */
+.hero-bg-section{
+  min-height: calc(100vh - 92px);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35)),
+    url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
+  background-color: var(--navy);
+}
+
+/* Footer (if you bring it back later) */
 .footer{
   padding:26px 0 34px;
   border-top:1px solid rgba(255,255,255,.08);
   color: rgba(255,255,255,.65);
   font-size:12px;
-}
-
-/* =========================================
-   Home hero background section (index.html)
-   ========================================= */
-.hero-bg-section{
-  min-height: calc(100vh - 140px);
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35)),
-    url("/Buffalos/assets/img/BuffHome.png") top center / contain no-repeat;
-  background-color: var(--navy);
 }
 
 /* =========================================
@@ -357,4 +314,11 @@ a{ color:inherit; text-decoration:none; }
   .mobile-toggle{ display:none; }
   .mobile-menu{ display:none !important; }
   .grid{ grid-template-columns: 1fr 1fr; }
+
+  /* Slightly larger brand on desktop */
+  .brand img{ width:54px; height:54px; }
+  .brand .title{ font-size:18px; }
+  .brand .subtitle{ font-size:12px; }
+  .btn.primary{ font-size:13px; padding:12px 14px; }
+  .icon-btn{ width:44px; height:44px; }
 }
