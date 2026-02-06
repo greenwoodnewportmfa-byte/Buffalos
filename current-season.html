@@ -1,125 +1,75 @@
+<!-- =========================================
+     current-season.html (Copy/Paste Full File)
+     Uses the CSS above + your existing /assets/site.js
+     Fixes mobile menu overflow + stacks Fall buttons on mobile
+     ========================================= -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Season | GNMFA</title>
-
-  <!-- Site-wide styles -->
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
+    /* Page-specific layout */
     .page-wrap{ padding:14px 0 32px; }
     .stack{ display:grid; gap:14px; }
 
-    /* Card matches your existing aesthetic */
-    .card{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.06);
-      box-shadow:0 10px 26px rgba(0,0,0,.22);
-      padding:14px;
-    }
-
-    .section-title{
-      font-weight:1000;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      font-size:14px;
-      margin:0 0 10px;
-      color:rgba(255,255,255,.92);
-      text-align:center;
-    }
-
-    /* ===============================
-       SEASON MENU
-       Mobile: stacked
-       Desktop: 75% / 25%
-       =============================== */
+    /* Season grid: mobile stacked, desktop 75/25 */
     .season-menu{
       display:grid;
       gap:14px;
       grid-template-columns:1fr;
     }
     @media (min-width: 720px){
-      .season-menu{
-        grid-template-columns: 3fr 1fr;
-        align-items:stretch;
-      }
+      .season-menu{ grid-template-columns: 3fr 1fr; }
     }
 
-    /* Pills / buttons */
-    .pill-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-    }
-    .pill{
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.25);
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-      font-size:12px;
-      opacity:.95;
-      text-align:center;
-    }
-    .pill:hover{ background:rgba(255,255,255,.08); opacity:1; }
+    /* Center titles on this page */
+    .section-title{ text-align:center; }
 
-    /* Home field centering */
-    .home-field{
-      text-align:center;
-    }
+    /* Home Field */
+    .home-field{ text-align:center; }
     .home-field .address{
-      color:rgba(255,255,255,.85);
+      color: rgba(255,255,255,.85);
       line-height:1.5;
       margin: 0 0 10px;
-      text-align:center;
     }
     .home-field .blurb{
-      color:rgba(255,255,255,.72);
+      color: rgba(255,255,255,.72);
       font-size:13px;
       line-height:1.4;
       max-width:560px;
       margin:0 auto 12px;
     }
-
     .map-link{
       display:inline-flex;
-      gap:10px;
       align-items:center;
       justify-content:center;
       padding:12px 14px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
-      font-weight:900;
+      background: rgba(255,255,255,.08);
+      font-weight:1000;
       letter-spacing:.6px;
       text-transform:uppercase;
       font-size:12px;
-      margin:0 auto;
     }
-    .map-link:hover{ background:rgba(255,255,255,.12); }
+    .map-link:hover{ background: rgba(255,255,255,.12); }
+
+    /* Fall buttons stacked on mobile only */
+    @media (max-width: 719px){
+      .fall-pills{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .fall-pills .pill{
+        width:100%;
+      }
+    }
 
     /* Calendar */
-    .cal-wrap{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.15);
-    }
-    .cal-wrap iframe{
-      width:100%;
-      height:70vh;
-      min-height:560px;
-      border:0;
-      display:block;
-    }
-
-    /* Calendar selector */
     .cal-controls{
       display:grid;
       gap:10px;
@@ -127,11 +77,11 @@
       padding:12px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
+      background: rgba(0,0,0,.18);
     }
     .cal-controls .hint{
       font-size:12px;
-      color:rgba(255,255,255,.72);
+      color: rgba(255,255,255,.72);
       line-height:1.35;
       margin:0;
       text-align:center;
@@ -149,22 +99,22 @@
       padding:10px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.25);
+      background: rgba(0,0,0,.25);
       user-select:none;
       cursor:pointer;
     }
     .check-pill input{
       width:18px;
       height:18px;
-      accent-color:#0b1a33; /* navy */
+      accent-color:#0b1a33;
       cursor:pointer;
     }
     .check-pill span{
-      font-weight:900;
+      font-weight:1000;
       text-transform:uppercase;
       letter-spacing:.6px;
       font-size:12px;
-      color:rgba(255,255,255,.90);
+      color: rgba(255,255,255,.90);
     }
     .cal-actions{
       display:flex;
@@ -180,14 +130,28 @@
       padding:10px 12px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.08);
-      font-weight:900;
+      background: rgba(255,255,255,.08);
+      font-weight:1000;
       letter-spacing:.6px;
       text-transform:uppercase;
       font-size:12px;
       cursor:pointer;
     }
-    .small-btn:hover{ background:rgba(255,255,255,.12); }
+    .small-btn:hover{ background: rgba(255,255,255,.12); }
+
+    .cal-wrap{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.15);
+    }
+    .cal-wrap iframe{
+      width:100%;
+      height:70vh;
+      min-height:560px;
+      border:0;
+      display:block;
+    }
   </style>
 </head>
 
@@ -226,7 +190,6 @@
         <a href="/Buffalos/index.html">Home</a>
         <a class="active" href="/Buffalos/current-season.html">Current Season</a>
         <a href="/Buffalos/registration.html">Registration</a>
-        <a href="/Buffalos/registration.html">Registration</a>
         <a href="/Buffalos/directions.html">Directions</a>
       </div>
     </div>
@@ -236,11 +199,11 @@
     <div class="container">
       <div class="stack">
 
-        <!-- Season cards -->
+        <!-- Fall / Spring -->
         <div class="season-menu">
           <section class="card">
             <h2 class="section-title">Fall</h2>
-            <div class="pill-row">
+            <div class="pill-row fall-pills">
               <a class="pill" href="/Buffalos/teams/midget.html">Midget</a>
               <a class="pill" href="/Buffalos/teams/pony.html">Pony</a>
               <a class="pill" href="/Buffalos/teams/peewee.html">PeeWee</a>
@@ -261,8 +224,8 @@
           <h2 class="section-title">Home Field</h2>
           <p class="address">208 W Juniata Pkwy, Millerstown, PA 17062</p>
           <p class="blurb">
-            If a game or event is hosted anywhere other than our normal home field, the calendar event will always show
-            the correct address in the event details below.
+            If a game or event is hosted somewhere other than our normal home field,
+            the calendar event will always include the correct address in the event details.
           </p>
           <a class="map-link"
              href="https://www.google.com/maps/search/?api=1&query=208%20W%20Juniata%20Pkwy%2C%20Millerstown%2C%20PA%2017062"
@@ -276,9 +239,7 @@
           <h2 class="section-title">Calendars (Schedule View)</h2>
 
           <div class="cal-controls" aria-label="Calendar filters">
-            <p class="hint">
-              Select one or more calendars to display. Your selections are saved on this device.
-            </p>
+            <p class="hint">Select one or more calendars to display. Your selections are saved on this device.</p>
 
             <div class="check-row">
               <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="main" /><span>Main</span></label>
@@ -329,25 +290,19 @@
       const url = new URL("https://calendar.google.com/calendar/embed");
       url.searchParams.set("ctz", "America/New_York");
       url.searchParams.set("mode", "AGENDA");
-
       const keys = selectedKeys.length ? selectedKeys : ["main"];
       keys.forEach(k => url.searchParams.append("src", CALS[k]));
       return url.toString();
     }
 
-    function getSelectedKeys(){
-      return checks.filter(c => c.checked).map(c => c.dataset.cal);
-    }
-
+    function getSelectedKeys(){ return checks.filter(c => c.checked).map(c => c.dataset.cal); }
     function setSelectedKeys(keys){
       const set = new Set(keys);
       checks.forEach(c => c.checked = set.has(c.dataset.cal));
     }
-
     function saveSelection(keys){
       try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(keys)); }catch(e){}
     }
-
     function loadSelection(){
       try{
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -355,9 +310,7 @@
         const parsed = JSON.parse(raw);
         if(!Array.isArray(parsed)) return null;
         return parsed.filter(k => Object.prototype.hasOwnProperty.call(CALS, k));
-      }catch(e){
-        return null;
-      }
+      }catch(e){ return null; }
     }
 
     function updateCalendar({persist=true} = {}){
@@ -384,11 +337,8 @@
     });
 
     const saved = loadSelection();
-    if(saved && saved.length){
-      setSelectedKeys(saved);
-    }else{
-      setSelectedKeys(["main"]);
-    }
+    if(saved && saved.length) setSelectedKeys(saved);
+    else setSelectedKeys(["main"]);
     updateCalendar({persist:false});
   </script>
 </body>
