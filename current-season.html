@@ -1,26 +1,23 @@
-<!-- =========================================
-     current-season.html (Copy/Paste Full File)
-     Uses the CSS above + your existing /assets/site.js
-     Fixes mobile menu overflow + stacks Fall buttons on mobile
-     ========================================= -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Season | GNMFA</title>
+
+  <!-- Shared theme -->
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    /* Page-specific layout */
-    .page-wrap{ padding:14px 0 32px; }
+    /* Page layout */
+    .page-wrap{ padding:14px 0 18px; }
     .stack{ display:grid; gap:14px; }
 
     /* Season grid: mobile stacked, desktop 75/25 */
     .season-menu{
       display:grid;
       gap:14px;
-      grid-template-columns:1fr;
+      grid-template-columns: 1fr;
     }
     @media (min-width: 720px){
       .season-menu{ grid-template-columns: 3fr 1fr; }
@@ -69,7 +66,7 @@
       }
     }
 
-    /* Calendar */
+    /* Calendar selector */
     .cal-controls{
       display:grid;
       gap:10px;
@@ -156,6 +153,8 @@
 </head>
 
 <body>
+
+  <!-- Shared Header (Current Season ACTIVE) -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
@@ -176,16 +175,19 @@
 
         <div class="actions">
           <a class="btn primary" href="/Buffalos/registration.html">Register</a>
-          <button class="icon-btn mobile-toggle" type="button"
-                  aria-label="Open menu" aria-expanded="false"
+
+          <button class="icon-btn mobile-toggle"
+                  aria-label="Open menu"
+                  aria-expanded="false"
                   data-mobile-toggle>
-            <div class="burger-lines" aria-hidden="true">
+            <div class="burger-lines">
               <span></span><span></span><span></span>
             </div>
           </button>
         </div>
       </div>
 
+      <!-- Mobile Menu -->
       <div class="mobile-menu" data-mobile-menu>
         <a href="/Buffalos/index.html">Home</a>
         <a class="active" href="/Buffalos/current-season.html">Current Season</a>
@@ -195,6 +197,7 @@
     </div>
   </header>
 
+  <!-- PAGE CONTENT -->
   <main class="page-wrap">
     <div class="container">
       <div class="stack">
@@ -266,9 +269,12 @@
 
       </div>
     </div>
-  </main>
 
-  <div class="site-banner">GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION</div>
+    <!-- Banner directly under page content -->
+    <div class="site-banner">
+      GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+    </div>
+  </main>
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
