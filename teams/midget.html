@@ -65,10 +65,21 @@
       border-radius:18px;
       padding:16px;
       box-shadow:0 10px 26px rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
     }
 
-    .staff-card.football{ background:#0b1a33; }
-    .staff-card.cheer{ background:#f3a6c8; color:#1b1b1b; }
+    /* Football = navy */
+    .staff-card.football{
+      background:#0b1a33;
+      color:#ffffff;
+    }
+
+    /* Cheer = darker pink (≈70% darker than the bright version) */
+    .staff-card.cheer{
+      background:#8a3f5f; /* dark muted pink */
+      color:#ffffff;
+    }
 
     .staff-title{
       font-weight:1000;
@@ -87,9 +98,14 @@
       padding:10px 12px;
       border-radius:14px;
       background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
     }
 
-    .cheer .coach-row{ background:rgba(255,255,255,.35); }
+    /* Cheer rows: softer (not washed out) */
+    .staff-card.cheer .coach-row{
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.16);
+    }
 
     .coach-role{
       font-weight:900;
@@ -122,24 +138,30 @@
       font-size:14px;
       letter-spacing:1px;
       text-transform:uppercase;
+      font-weight:1000;
+      color: rgba(255,255,255,.92);
     }
-    .cal-link{
+    .top-right-link{
       font-weight:1000;
       font-size:12px;
       text-transform:uppercase;
       text-decoration:underline;
+      color: rgba(255,255,255,.92);
+      white-space:nowrap;
     }
 
     .cal-wrap{
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.15);
     }
     .cal-wrap iframe{
       width:100%;
       height:70vh;
       min-height:560px;
       border:0;
+      display:block;
     }
 
     /* =========================
@@ -149,6 +171,7 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
+      gap:12px;
       margin-bottom:10px;
     }
     .images-header h2{
@@ -156,6 +179,8 @@
       font-size:14px;
       letter-spacing:1px;
       text-transform:uppercase;
+      font-weight:1000;
+      color: rgba(255,255,255,.92);
     }
 
     .photo{
@@ -170,6 +195,17 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      display:block;
+    }
+
+    /* Small screens: keep top-right links from wrapping weirdly */
+    @media (max-width: 420px){
+      .calendar-header,
+      .images-header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .top-right-link{ align-self:flex-end; }
     }
   </style>
 </head>
@@ -180,7 +216,7 @@
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="/Buffalos/index.html">
+        <a class="brand" href="/Buffalos/index.html" aria-label="GNMFA Home">
           <img src="/Buffalos/assets/img/logo.png" alt="GNMFA logo" />
           <div class="text">
             <div class="title">GNMFA</div>
@@ -188,7 +224,7 @@
           </div>
         </a>
 
-        <nav class="nav">
+        <nav class="nav" aria-label="Primary navigation">
           <a href="/Buffalos/index.html">Home</a>
           <a class="active" href="/Buffalos/current-season.html">Current Season</a>
           <a href="/Buffalos/registration.html">Registration</a>
@@ -197,7 +233,10 @@
 
         <div class="actions">
           <a class="btn primary" href="/Buffalos/registration.html">Register</a>
-          <button class="icon-btn mobile-toggle" data-mobile-toggle>
+          <button class="icon-btn mobile-toggle"
+                  aria-label="Open menu"
+                  aria-expanded="false"
+                  data-mobile-toggle>
             <div class="burger-lines"><span></span><span></span><span></span></div>
           </button>
         </div>
@@ -217,21 +256,24 @@
       <div class="stack">
 
         <!-- TEAM SWITCHER -->
-        <div class="team-switcher">
-          <a class="active" href="/Buffalos/teams/midget.html">Midget</a>
-          <a href="/Buffalos/teams/pony.html">Pony</a>
-          <a href="/Buffalos/teams/peewee.html">PeeWee</a>
-          <a href="/Buffalos/teams/smurf.html">Smurf</a>
-          <a href="/Buffalos/teams/flag-football.html">Flag</a>
-        </div>
+        <div class="team-switcher" aria-label="Team navigation">
+  <a href="/Buffalos/teams/pony.html">Pony</a>
+  <a href="/Buffalos/teams/peewee.html">PeeWee</a>
+  <a href="/Buffalos/teams/smurf.html">Smurf</a>
+  <a href="/Buffalos/teams/flag-football.html">Flag</a>
+</div>
+
 
         <!-- TITLE -->
         <div class="team-title">2026 Midgets</div>
 
         <!-- STAFF -->
         <div class="staff-grid">
-          <div class="staff-card football">
+
+          <!-- FOOTBALL STAFF -->
+          <section class="staff-card football" aria-label="Football coaching staff">
             <div class="staff-title">Coaching Staff</div>
+
             <div class="coach-grid">
               <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
               <div class="coach-row"><div class="coach-role">Offensive Coordinator</div><div class="coach-name">TBD</div></div>
@@ -239,24 +281,29 @@
               <div class="coach-row"><div class="coach-role">Lineman Coach</div><div class="coach-name">TBD</div></div>
               <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
             </div>
-          </div>
+          </section>
 
-          <div class="staff-card cheer">
+          <!-- CHEER STAFF -->
+          <section class="staff-card cheer" aria-label="Cheer coaching staff">
             <div class="staff-title">Cheer Staff</div>
+
             <div class="coach-grid">
               <div class="coach-row"><div class="coach-role">Head Coach</div><div class="coach-name">TBD</div></div>
               <div class="coach-row"><div class="coach-role">Assistant Coach</div><div class="coach-name">TBD</div></div>
             </div>
-          </div>
+          </section>
+
         </div>
 
         <!-- CALENDAR -->
-        <div class="card">
+        <section class="card" aria-label="Team calendar">
           <div class="calendar-header">
             <h2>Calendar</h2>
-            <a class="cal-link"
+            <a class="top-right-link"
                href="https://calendar.google.com/calendar/embed?src=edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
-               target="_blank">Add this Calendar to your Device</a>
+               target="_blank" rel="noopener">
+              Add this Calendar to your Device
+            </a>
           </div>
 
           <div class="cal-wrap">
@@ -264,19 +311,22 @@
               src="https://calendar.google.com/calendar/embed?src=edadf15131fa59c3034dd5cda720cff7022f4715a342e223f0eba69677c44793%40group.calendar.google.com&ctz=America%2FNew_York&mode=AGENDA"
               scrolling="no"></iframe>
           </div>
-        </div>
+        </section>
 
         <!-- IMAGES -->
-        <div class="card">
+        <section class="card" aria-label="Team images">
           <div class="images-header">
             <h2>Images</h2>
-            <a class="cal-link" href="/Buffalos/assets/img/">Open Folder</a>
+            <!-- Kept as a simple link (no Google). You can change later if you want. -->
+            <a class="top-right-link" href="/Buffalos/assets/img/" aria-label="Open images folder">
+              Open Folder
+            </a>
           </div>
 
           <div class="photo">
-            <img id="teamPhoto" alt="Midget team photo">
+            <img id="teamPhoto" alt="Midget team photo" />
           </div>
-        </div>
+        </section>
 
       </div>
     </div>
@@ -286,18 +336,21 @@
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
+    // Rotates local images on refresh:
+    // /Buffalos/assets/img/Midget01.png ... Midget10.png
+    // If missing, fallback = BuffHome2.png
     const MAX_IMAGES = 10;
-    const images = [];
-
-    for(let i=1;i<=MAX_IMAGES;i++){
-      const num = String(i).padStart(2,"0");
-      images.push(`/Buffalos/assets/img/Midget${num}.png`);
+    const pool = [];
+    for (let i = 1; i <= MAX_IMAGES; i++){
+      const num = String(i).padStart(2, "0");
+      pool.push(`/Buffalos/assets/img/Midget${num}.png`);
     }
 
     const img = document.getElementById("teamPhoto");
-    const selected = images[Math.floor(Math.random()*images.length)];
-    img.onerror = () => img.src = "/Buffalos/assets/img/BuffHome2.png";
-    img.src = selected;
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+
+    img.onerror = () => { img.src = "/Buffalos/assets/img/BuffHome2.png"; };
+    img.src = pick;
   </script>
 </body>
 </html>
