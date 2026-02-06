@@ -79,6 +79,14 @@
       margin: 0 0 10px;
       text-align:center;
     }
+    .home-field .blurb{
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      line-height:1.4;
+      max-width:560px;
+      margin:0 auto 12px;
+    }
+
     .map-link{
       display:inline-flex;
       gap:10px;
@@ -148,7 +156,7 @@
     .check-pill input{
       width:18px;
       height:18px;
-      accent-color:#0b1a33;
+      accent-color:#0b1a33; /* navy */
       cursor:pointer;
     }
     .check-pill span{
@@ -184,7 +192,6 @@
 </head>
 
 <body>
-  <!-- Header (unchanged structure, simplified inline styles) -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
@@ -219,6 +226,7 @@
         <a href="/Buffalos/index.html">Home</a>
         <a class="active" href="/Buffalos/current-season.html">Current Season</a>
         <a href="/Buffalos/registration.html">Registration</a>
+        <a href="/Buffalos/registration.html">Registration</a>
         <a href="/Buffalos/directions.html">Directions</a>
       </div>
     </div>
@@ -228,7 +236,7 @@
     <div class="container">
       <div class="stack">
 
-        <!-- Season cards (Fall is 75%, Spring is 25% on desktop) -->
+        <!-- Season cards -->
         <div class="season-menu">
           <section class="card">
             <h2 class="section-title">Fall</h2>
@@ -248,14 +256,18 @@
           </section>
         </div>
 
-        <!-- Home Field (centered) -->
+        <!-- Home Field -->
         <section class="card home-field">
           <h2 class="section-title">Home Field</h2>
           <p class="address">208 W Juniata Pkwy, Millerstown, PA 17062</p>
+          <p class="blurb">
+            If a game or event is hosted anywhere other than our normal home field, the calendar event will always show
+            the correct address in the event details below.
+          </p>
           <a class="map-link"
              href="https://www.google.com/maps/search/?api=1&query=208%20W%20Juniata%20Pkwy%2C%20Millerstown%2C%20PA%2017062"
              target="_blank" rel="noopener">
-            Open in Google Maps
+            Open Home Field in Google Maps
           </a>
         </section>
 
@@ -263,37 +275,18 @@
         <section class="card">
           <h2 class="section-title">Calendars (Schedule View)</h2>
 
-          <!-- Checkbox controls -->
           <div class="cal-controls" aria-label="Calendar filters">
             <p class="hint">
               Select one or more calendars to display. Your selections are saved on this device.
             </p>
 
             <div class="check-row">
-              <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="main" />
-                <span>Main</span>
-              </label>
-              <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="midget" />
-                <span>Midget</span>
-              </label>
-              <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="pony" />
-                <span>Pony</span>
-              </label>
-              <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="peewee" />
-                <span>PeeWee</span>
-              </label>
-              <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="smurf" />
-                <span>Smurf</span>
-              </label>
-              <label class="check-pill">
-                <input type="checkbox" class="cal-check" data-cal="flag" />
-                <span>Flag</span>
-              </label>
+              <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="main" /><span>Main</span></label>
+              <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="midget" /><span>Midget</span></label>
+              <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="pony" /><span>Pony</span></label>
+              <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="peewee" /><span>PeeWee</span></label>
+              <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="smurf" /><span>Smurf</span></label>
+              <label class="check-pill"><input type="checkbox" class="cal-check" data-cal="flag" /><span>Flag</span></label>
             </div>
 
             <div class="cal-actions">
@@ -318,7 +311,6 @@
 
   <script src="/Buffalos/assets/site.js"></script>
   <script>
-    // --------- Config ----------
     const STORAGE_KEY = "gnmfa_selected_calendars_v1";
 
     const CALS = {
@@ -374,7 +366,6 @@
       if(persist) saveSelection(keys);
     }
 
-    // Events
     checks.forEach(c => c.addEventListener("change", () => updateCalendar({persist:true})));
 
     document.getElementById("calSelectAll").addEventListener("click", () => {
@@ -392,7 +383,6 @@
       updateCalendar({persist:true});
     });
 
-    // Init
     const saved = loadSelection();
     if(saved && saved.length){
       setSelectedKeys(saved);
