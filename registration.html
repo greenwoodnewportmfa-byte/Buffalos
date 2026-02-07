@@ -11,74 +11,19 @@
   <style>
     .page-wrap{ padding:16px 0 28px; }
 
-    /* Full-width form container */
-    .wide{
+    /* 80/20 desktop layout */
+    .reg-layout{
       width: min(1300px, 96vw);
       margin: 0 auto;
-    }
-
-    /* Sponsors block (top) */
-    .sponsors{
-      padding: 12px 0 16px;
-      background: rgba(0,0,0,.35);
-      border-top: 1px solid rgba(255,255,255,.08);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .sponsors-inner{
-      width: min(1100px, 92vw);
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .sponsors h2{
-      margin: 0 0 12px;
-      font-size: 16px;
-      font-weight: 1000;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .sponsor-grid{
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      align-items: center;
-      justify-items: center;
-      margin-bottom: 12px;
+      grid-template-columns: 1fr;     /* mobile default */
+      gap: 14px;
+      align-items: start;
     }
-
-    .sponsor-tile{
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      max-width: 160px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      display: grid;
-      place-items: center;
-      padding: 12px;
-    }
-
-    .sponsor-tile img{
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-    }
-
-    .sponsors .thanks{
-      font-size: 12px;
-      color: rgba(255,255,255,.78);
-      letter-spacing: .4px;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-
-    @media (max-width: 520px){
-      .sponsor-tile{ max-width: 110px; padding: 10px; }
-      .sponsors h2{ font-size: 14px; margin-bottom: 10px; }
+    @media (min-width: 900px){
+      .reg-layout{
+        grid-template-columns: 4fr 1fr; /* 80% / 20% */
+      }
     }
 
     /* Registration card */
@@ -88,7 +33,6 @@
       background: rgba(255,255,255,.06);
       box-shadow: 0 10px 26px rgba(0,0,0,.22);
       padding: 16px;
-      margin-top: 14px;
     }
 
     .reg-header{
@@ -200,6 +144,74 @@
       .pay-cta{ justify-content:flex-start; }
       .pay-right{ justify-content:flex-start; }
     }
+
+    /* Sponsors sidebar card (right on desktop, bottom on mobile due to grid stacking) */
+    .sponsors-card{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+      padding: 14px;
+    }
+
+    .sponsors-card h2{
+      margin: 0 0 12px;
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+      text-align: center;
+    }
+
+    .sponsor-grid{
+      display:grid;
+      grid-template-columns: 1fr; /* narrow sidebar */
+      gap: 12px;
+      justify-items:center;
+      align-items:center;
+    }
+
+    /* On mobile, show 3 across */
+    @media (max-width: 899px){
+      .sponsor-grid{
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .sponsor-tile{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 160px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      display: grid;
+      place-items: center;
+      padding: 10px;
+    }
+
+    .sponsor-tile img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display:block;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+
+    .sponsors-card .thanks{
+      margin-top: 12px;
+      text-align:center;
+      font-size: 12px;
+      color: rgba(255,255,255,.78);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    @media (max-width: 520px){
+      .sponsor-tile{ max-width: 110px; padding: 8px; }
+    }
   </style>
 </head>
 
@@ -244,27 +256,11 @@
     </div>
   </header>
 
-  <!-- TOP SPONSORS BLOCK -->
-  <section class="sponsors" aria-label="Sponsors">
-    <div class="sponsors-inner">
-      <h2>Thank You to Our Sponsors</h2>
-
-      <div class="sponsor-grid" role="list">
-        <div class="sponsor-tile" role="listitem"><img id="sponsor1" alt="Sponsor logo 1"></div>
-        <div class="sponsor-tile" role="listitem"><img id="sponsor2" alt="Sponsor logo 2"></div>
-        <div class="sponsor-tile" role="listitem"><img id="sponsor3" alt="Sponsor logo 3"></div>
-      </div>
-
-      <div class="thanks">We appreciate your support</div>
-    </div>
-  </section>
-
-  <!-- REGISTRATION -->
   <main class="page-wrap">
-    <div class="wide">
-      <section class="reg-card">
+    <div class="reg-layout">
 
-        <!-- HEADER + TOP PAY -->
+      <!-- LEFT: REGISTRATION (80%) -->
+      <section class="reg-card">
         <div class="reg-header">
           <div>
             <h2 class="reg-title">Online Registration</h2>
@@ -292,7 +288,6 @@
           </div>
         </div>
 
-        <!-- FORM -->
         <div class="form-wrap">
           <iframe
             title="GNMFA Registration Form"
@@ -301,7 +296,6 @@
           </iframe>
         </div>
 
-        <!-- BOTTOM PAY -->
         <div class="reg-footer-row">
           <div class="pay-left">
             <div><strong>Payment Options:</strong></div>
@@ -318,8 +312,21 @@
             </a>
           </div>
         </div>
-
       </section>
+
+      <!-- RIGHT: SPONSORS (20%) / bottom on mobile -->
+      <aside class="sponsors-card" aria-label="Sponsors">
+        <h2>Thank You to Our Sponsors</h2>
+
+        <div class="sponsor-grid" role="list">
+          <div class="sponsor-tile" role="listitem"><img id="sponsor1" alt="Sponsor logo 1"></div>
+          <div class="sponsor-tile" role="listitem"><img id="sponsor2" alt="Sponsor logo 2"></div>
+          <div class="sponsor-tile" role="listitem"><img id="sponsor3" alt="Sponsor logo 3"></div>
+        </div>
+
+        <div class="thanks">We appreciate your support</div>
+      </aside>
+
     </div>
   </main>
 
@@ -411,7 +418,6 @@
 
         el.src = picks[i] || (i < 2 ? FALLBACK_MAIN : FALLBACK);
 
-        // Hard fallback if a picked image is missing at runtime
         el.onerror = () => {
           el.onerror = null;
           el.src = (i < 2) ? FALLBACK_MAIN : FALLBACK;
