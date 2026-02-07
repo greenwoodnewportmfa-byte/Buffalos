@@ -9,33 +9,47 @@
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    /* Index-only hero override */
-    .hero-bg-section{
-      min-height: calc(100vh - 92px);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
-        url("/Buffalos/assets/img/BuffHome2.png") top center / contain no-repeat;
-      background-color: #060a13;
-    }
-
     main{ display:block; }
 
+    /* =========================================
+       HERO (use real <img> to eliminate mobile gap)
+       ========================================= */
+    .hero{
+      position: relative;
+      background: #060a13;
+    }
+
+    .hero-media{
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      /* NO min-height here */
+    }
+
+    .hero-media img{
+      display:block;
+      width:100%;
+      height:auto;          /* this is the key: no forced empty space */
+    }
+
+    /* gradient overlay */
+    .hero-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75));
+      pointer-events:none;
+    }
+
     /* =========================
-       Sponsors Block
-       - Remove the big gap on mobile
+       Sponsors Block (tight)
        ========================= */
     .sponsors{
-      padding: 10px 0 16px; /* tighter overall */
-      margin-top: -18px;    /* pulls sponsors up closer to hero on mobile */
+      padding: 14px 0 16px;
+      margin: 0; /* ensure no extra gap */
       background: rgba(0,0,0,.35);
       border-top: 1px solid rgba(255,255,255,.08);
       border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    @media (min-width: 720px){
-      .sponsors{
-        padding: 22px 0 18px;
-        margin-top: 0; /* don’t pull up on desktop */
-      }
     }
 
     .sponsors-inner{
@@ -119,7 +133,7 @@
 
         <div class="actions">
           <a class="btn primary" href="/Buffalos/registration.html">Register</a>
-          <button class="icon-btn mobile-toggle" data-mobile-toggle>
+          <button class="icon-btn mobile-toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
             <div class="burger-lines"><span></span><span></span><span></span></div>
           </button>
         </div>
@@ -134,9 +148,14 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <main>
-    <section class="hero-bg-section" aria-label="GNMFA hero image"></section>
+
+    <!-- HERO (real image, no forced viewport height) -->
+    <section class="hero" aria-label="GNMFA hero image">
+      <div class="hero-media">
+        <img src="/Buffalos/assets/img/BuffHome2.png" alt="GNMFA Buffalo Home" loading="eager" />
+      </div>
+    </section>
 
     <!-- SPONSORS -->
     <section class="sponsors" aria-label="Sponsors">
@@ -157,6 +176,7 @@
     <div class="site-banner">
       GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
     </div>
+
   </main>
 
   <script src="/Buffalos/assets/site.js"></script>
@@ -242,7 +262,6 @@
 
         el.src = picks[i] || (i < 2 ? FALLBACK_MAIN : FALLBACK);
 
-        // Hard fallback if a picked image is missing at runtime
         el.onerror = () => {
           el.onerror = null;
           el.src = (i < 2) ? FALLBACK_MAIN : FALLBACK;
