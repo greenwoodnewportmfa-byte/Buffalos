@@ -11,15 +11,81 @@
   <style>
     /* Index-only hero override */
     .hero-bg-section{
-      min-height: calc(100vh - 92px); /* header height */
+      min-height: calc(100vh - 92px);
       background:
         linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
         url("/Buffalos/assets/img/BuffHome2.png") top center / contain no-repeat;
       background-color: #060a13;
     }
 
-    /* Index does NOT stretch main */
     main{ display:block; }
+
+    /* =========================
+       Sponsors Block
+       ========================= */
+    .sponsors{
+      padding: 28px 0 22px;
+      background: rgba(0,0,0,.35);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .sponsors-inner{
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sponsors h2{
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 1000;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .sponsor-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      align-items: center;
+      justify-items: center;
+      margin-bottom: 14px;
+    }
+
+    .sponsor-tile{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 160px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      display: grid;
+      place-items: center;
+      padding: 12px;
+    }
+
+    .sponsor-tile img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .sponsors .thanks{
+      font-size: 13px;
+      color: rgba(255,255,255,.78);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    @media (max-width: 520px){
+      .sponsor-grid{
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .sponsor-tile{ max-width: 110px; }
+    }
   </style>
 </head>
 
@@ -46,19 +112,12 @@
 
         <div class="actions">
           <a class="btn primary" href="/Buffalos/registration.html">Register</a>
-
-          <button class="icon-btn mobile-toggle"
-                  aria-label="Open menu"
-                  aria-expanded="false"
-                  data-mobile-toggle>
-            <div class="burger-lines">
-              <span></span><span></span><span></span>
-            </div>
+          <button class="icon-btn mobile-toggle" data-mobile-toggle>
+            <div class="burger-lines"><span></span><span></span><span></span></div>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
       <div class="mobile-menu" data-mobile-menu>
         <a class="active" href="/Buffalos/index.html">Home</a>
         <a href="/Buffalos/current-season.html">Current Season</a>
@@ -68,16 +127,75 @@
     </div>
   </header>
 
-  <!-- HERO IMAGE -->
+  <!-- HERO -->
   <main>
     <section class="hero-bg-section"></section>
 
-    <!-- Banner NOW SITS DIRECTLY UNDER HERO -->
+    <!-- SPONSORS -->
+    <section class="sponsors">
+      <div class="sponsors-inner">
+        <h2>Thank You to Our Sponsors</h2>
+
+        <div class="sponsor-grid">
+          <div class="sponsor-tile"><img id="sponsor1" alt="Sponsor logo"></div>
+          <div class="sponsor-tile"><img id="sponsor2" alt="Sponsor logo"></div>
+          <div class="sponsor-tile"><img id="sponsor3" alt="Sponsor logo"></div>
+        </div>
+
+        <div class="thanks">We appreciate your support</div>
+      </div>
+    </section>
+
+    <!-- Footer Banner -->
     <div class="site-banner">
       GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
     </div>
   </main>
 
   <script src="/Buffalos/assets/site.js"></script>
+
+  <script>
+    // =========================
+    // Sponsor Image Selection
+    // =========================
+    function buildList(prefix, max){
+      return Array.from({length:max}, (_,i) =>
+        `/Buffalos/assets/img/${prefix}${String(i+1).padStart(2,'0')}.png`
+      );
+    }
+
+    function pickUnique(source, used){
+      const available = source.filter(s => !used.has(s));
+      if(!available.length) return null;
+      const pick = available[Math.floor(Math.random()*available.length)];
+      used.add(pick);
+      return pick;
+    }
+
+    const mainSponsors = buildList("sponsormain", 20);
+    const sponsors     = buildList("sponsor", 20);
+
+    const used = new Set();
+    const picks = [];
+
+    // Try to get 2 main sponsors
+    for(let i=0;i<2;i++){
+      const p = pickUnique(mainSponsors, used);
+      if(p) picks.push(p);
+    }
+
+    // Fill remaining slots with regular sponsors
+    while(picks.length < 3){
+      const p = pickUnique(sponsors, used);
+      if(!p) break;
+      picks.push(p);
+    }
+
+    // Assign images
+    ["sponsor1","sponsor2","sponsor3"].forEach((id, i)=>{
+      const img = document.getElementById(id);
+      if(picks[i]) img.src = picks[i];
+    });
+  </script>
 </body>
 </html>
