@@ -22,12 +22,20 @@
 
     /* =========================
        Sponsors Block
+       - Remove the big gap on mobile
        ========================= */
     .sponsors{
-      padding: 28px 0 22px;
+      padding: 10px 0 16px; /* tighter overall */
+      margin-top: -18px;    /* pulls sponsors up closer to hero on mobile */
       background: rgba(0,0,0,.35);
       border-top: 1px solid rgba(255,255,255,.08);
       border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    @media (min-width: 720px){
+      .sponsors{
+        padding: 22px 0 18px;
+        margin-top: 0; /* don’t pull up on desktop */
+      }
     }
 
     .sponsors-inner{
@@ -37,8 +45,8 @@
     }
 
     .sponsors h2{
-      margin: 0 0 16px;
-      font-size: 18px;
+      margin: 0 0 12px;
+      font-size: 16px;
       font-weight: 1000;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -47,10 +55,10 @@
     .sponsor-grid{
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 12px;
       align-items: center;
       justify-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .sponsor-tile{
@@ -70,10 +78,11 @@
       max-height: 100%;
       object-fit: contain;
       display: block;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
     }
 
     .sponsors .thanks{
-      font-size: 13px;
+      font-size: 12px;
       color: rgba(255,255,255,.78);
       letter-spacing: .4px;
       text-transform: uppercase;
@@ -81,10 +90,8 @@
     }
 
     @media (max-width: 520px){
-      .sponsor-grid{
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      .sponsor-tile{ max-width: 110px; }
+      .sponsor-tile{ max-width: 110px; padding: 10px; }
+      .sponsors h2{ font-size: 14px; margin-bottom: 10px; }
     }
   </style>
 </head>
@@ -129,17 +136,17 @@
 
   <!-- HERO -->
   <main>
-    <section class="hero-bg-section"></section>
+    <section class="hero-bg-section" aria-label="GNMFA hero image"></section>
 
     <!-- SPONSORS -->
-    <section class="sponsors">
+    <section class="sponsors" aria-label="Sponsors">
       <div class="sponsors-inner">
         <h2>Thank You to Our Sponsors</h2>
 
-        <div class="sponsor-grid">
-          <div class="sponsor-tile"><img id="sponsor1" alt="Sponsor logo"></div>
-          <div class="sponsor-tile"><img id="sponsor2" alt="Sponsor logo"></div>
-          <div class="sponsor-tile"><img id="sponsor3" alt="Sponsor logo"></div>
+        <div class="sponsor-grid" role="list">
+          <div class="sponsor-tile" role="listitem"><img id="sponsor1" alt="Sponsor logo 1"></div>
+          <div class="sponsor-tile" role="listitem"><img id="sponsor2" alt="Sponsor logo 2"></div>
+          <div class="sponsor-tile" role="listitem"><img id="sponsor3" alt="Sponsor logo 3"></div>
         </div>
 
         <div class="thanks">We appreciate your support</div>
@@ -156,46 +163,94 @@
 
   <script>
     // =========================
-    // Sponsor Image Selection
+    // Sponsor Image Selection (Safe + Fallback)
+    // Rules:
+    // - 2 images from sponsormain01..20 (no duplicates)
+    // - 1 image from sponsor01..20 (no duplicates)
+    // - If only 1 sponsormain exists, use 2 of the normal sponsor images
+    // - If any file doesn't exist, default to sponsormain01.png and sponsor01.png
     // =========================
+
+    const BASE = "/Buffalos/assets/img/";
+    const FALLBACK_MAIN = `${BASE}sponsormain01.png`;
+    const FALLBACK = `${BASE}sponsor01.png`;
+
     function buildList(prefix, max){
       return Array.from({length:max}, (_,i) =>
-        `/Buffalos/assets/img/${prefix}${String(i+1).padStart(2,'0')}.png`
+        `${BASE}${prefix}${String(i+1).padStart(2,'0')}.png`
       );
     }
 
-    function pickUnique(source, used){
-      const available = source.filter(s => !used.has(s));
-      if(!available.length) return null;
-      const pick = available[Math.floor(Math.random()*available.length)];
-      used.add(pick);
-      return pick;
+    function imageExists(src){
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      });
     }
 
-    const mainSponsors = buildList("sponsormain", 20);
-    const sponsors     = buildList("sponsor", 20);
+    async function pickValid(source, used, fallback){
+      const shuffled = source
+        .filter(s => !used.has(s))
+        .sort(() => 0.5 - Math.random());
 
-    const used = new Set();
-    const picks = [];
-
-    // Try to get 2 main sponsors
-    for(let i=0;i<2;i++){
-      const p = pickUnique(mainSponsors, used);
-      if(p) picks.push(p);
+      for(const src of shuffled){
+        if(await imageExists(src)){
+          used.add(src);
+          return src;
+        }
+      }
+      return fallback;
     }
 
-    // Fill remaining slots with regular sponsors
-    while(picks.length < 3){
-      const p = pickUnique(sponsors, used);
-      if(!p) break;
-      picks.push(p);
+    async function countExisting(list){
+      let count = 0;
+      for(const src of list){
+        if(await imageExists(src)) count++;
+      }
+      return count;
     }
 
-    // Assign images
-    ["sponsor1","sponsor2","sponsor3"].forEach((id, i)=>{
-      const img = document.getElementById(id);
-      if(picks[i]) img.src = picks[i];
-    });
+    async function loadSponsors(){
+      const mainList = buildList("sponsormain", 20);
+      const regList  = buildList("sponsor", 20);
+      const used = new Set();
+      const picks = [];
+
+      const mainCount = await countExisting(mainList);
+
+      if(mainCount >= 2){
+        picks.push(await pickValid(mainList, used, FALLBACK_MAIN));
+        picks.push(await pickValid(mainList, used, FALLBACK_MAIN));
+        picks.push(await pickValid(regList, used, FALLBACK));
+      } else if(mainCount === 1){
+        picks.push(await pickValid(mainList, used, FALLBACK_MAIN));
+        picks.push(await pickValid(regList, used, FALLBACK));
+        picks.push(await pickValid(regList, used, FALLBACK));
+      } else {
+        picks.push(FALLBACK_MAIN);
+        used.add(FALLBACK_MAIN);
+        picks.push(await pickValid(regList, used, FALLBACK));
+        picks.push(await pickValid(regList, used, FALLBACK));
+      }
+
+      const ids = ["sponsor1","sponsor2","sponsor3"];
+      ids.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if(!el) return;
+
+        el.src = picks[i] || (i < 2 ? FALLBACK_MAIN : FALLBACK);
+
+        // Hard fallback if a picked image is missing at runtime
+        el.onerror = () => {
+          el.onerror = null;
+          el.src = (i < 2) ? FALLBACK_MAIN : FALLBACK;
+        };
+      });
+    }
+
+    loadSponsors();
   </script>
 </body>
 </html>
