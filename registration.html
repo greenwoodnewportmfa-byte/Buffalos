@@ -3,94 +3,209 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GNMFA Youth Football</title>
+  <title>Registration | GNMFA</title>
 
   <!-- Shared theme -->
   <link rel="stylesheet" href="/Buffalos/assets/style.css" />
 
   <style>
-    /* Hero image */
-    .hero-bg-section{
-      min-height: calc(100vh - 92px); /* header height */
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
-        url("/Buffalos/assets/img/BuffHome2.png") top center / contain no-repeat;
-      background-color: #060a13;
+    .page-wrap{ padding:16px 0 28px; }
+
+    /* Full-width form container */
+    .wide{
+      width: min(1300px, 96vw);
+      margin: 0 auto;
     }
 
-    main{ display:block; }
-
-    /* Sponsors block (under hero, above footer strip) */
-    .sponsors-wrap{
-      padding: 14px 0 18px;
-      background: transparent;
+    /* Sponsors block (top) */
+    .sponsors{
+      padding: 12px 0 16px;
+      background: rgba(0,0,0,.35);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    .sponsors-card{
+
+    .sponsors-inner{
       width: min(1100px, 92vw);
       margin: 0 auto;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 10px 26px rgba(0,0,0,.22);
-      padding: 14px;
+      text-align: center;
     }
-    .sponsors-title{
-      margin:0 0 12px;
+
+    .sponsors h2{
+      margin: 0 0 12px;
+      font-size: 16px;
       font-weight: 1000;
       letter-spacing: 1px;
       text-transform: uppercase;
-      font-size: 14px;
-      color: rgba(255,255,255,.92);
-      text-align:center;
-    }
-    .sponsors-grid{
-      display:grid;
-      gap:12px;
-      grid-template-columns: 1fr 1fr 1fr;
-      align-items:center;
-    }
-    .sponsor-tile{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      overflow:hidden;
-      aspect-ratio: 1 / 1;
-      display:grid;
-      place-items:center;
-      padding:10px;
-    }
-    .sponsor-tile img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display:block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-    }
-    .sponsors-thanks{
-      margin: 12px 0 0;
-      text-align:center;
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
-      line-height: 1.35;
-      font-weight: 800;
-      letter-spacing: .4px;
-      text-transform: uppercase;
     }
 
-    @media (max-width: 720px){
-      .sponsors-grid{
-        grid-template-columns: 1fr;
-      }
-      .sponsor-tile{
-        aspect-ratio: 3 / 1;
-      }
+    .sponsor-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items: center;
+      justify-items: center;
+      margin-bottom: 12px;
+    }
+
+    .sponsor-tile{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 160px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      display: grid;
+      place-items: center;
+      padding: 12px;
+    }
+
+    .sponsor-tile img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+
+    .sponsors .thanks{
+      font-size: 12px;
+      color: rgba(255,255,255,.78);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    @media (max-width: 520px){
+      .sponsor-tile{ max-width: 110px; padding: 10px; }
+      .sponsors h2{ font-size: 14px; margin-bottom: 10px; }
+    }
+
+    /* Registration card */
+    .reg-card{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    .reg-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .reg-title{
+      margin:0;
+      font-weight:1000;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:14px;
+      color: rgba(255,255,255,.92);
+    }
+
+    .reg-sub{
+      margin:8px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.45;
+      max-width: 820px;
+    }
+
+    /* Payment buttons */
+    .pay-cta,
+    .pay-right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    .pay-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:1000;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      font-size:12px;
+      border:1px solid rgba(0,0,0,.25);
+      white-space:nowrap;
+    }
+
+    .cashapp{
+      background:#00d632;
+      color:#0b1a33;
+    }
+    .cashapp:hover{ background:#00c02c; }
+
+    .venmo{
+      background:#f4c430;
+      color:#0b1a33;
+    }
+    .venmo:hover{ background:#e6b928; }
+
+    .pay-note{
+      text-align:right;
+      max-width: 360px;
+      font-size:12px;
+      line-height:1.35;
+      color: rgba(255,255,255,.78);
+    }
+    .pay-note strong{ color:#fff; }
+
+    /* Google Form */
+    .form-wrap{
+      margin-top:12px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .form-wrap iframe{
+      width:100%;
+      height:980px;
+      border:0;
+      display:block;
+    }
+
+    /* Bottom row */
+    .reg-footer-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .pay-left{
+      max-width:520px;
+      font-size:12px;
+      line-height:1.35;
+      color: rgba(255,255,255,.78);
+    }
+    .pay-left strong{ color:#fff; }
+
+    @media (max-width: 520px){
+      .pay-note{ text-align:left; max-width: 100%; }
+      .pay-cta{ justify-content:flex-start; }
+      .pay-right{ justify-content:flex-start; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Shared Header -->
+  <!-- SHARED HEADER -->
   <header class="topbar camo">
     <div class="container">
       <div class="topbar-inner">
@@ -103,66 +218,115 @@
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a class="active" href="/Buffalos/index.html">Home</a>
+          <a href="/Buffalos/index.html">Home</a>
           <a href="/Buffalos/current-season.html">Current Season</a>
-          <a href="/Buffalos/registration.html">Registration</a>
+          <a class="active" href="/Buffalos/registration.html">Registration</a>
           <a href="/Buffalos/more.html">More</a>
         </nav>
 
         <div class="actions">
           <a class="btn primary" href="/Buffalos/registration.html">Register</a>
-
           <button class="icon-btn mobile-toggle"
                   aria-label="Open menu"
                   aria-expanded="false"
                   data-mobile-toggle>
-            <div class="burger-lines">
-              <span></span><span></span><span></span>
-            </div>
+            <div class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></div>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
       <div class="mobile-menu" data-mobile-menu>
-        <a class="active" href="/Buffalos/index.html">Home</a>
+        <a href="/Buffalos/index.html">Home</a>
         <a href="/Buffalos/current-season.html">Current Season</a>
-        <a href="/Buffalos/registration.html">Registration</a>
+        <a class="active" href="/Buffalos/registration.html">Registration</a>
         <a href="/Buffalos/more.html">More</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO IMAGE -->
-  <main>
-    <section class="hero-bg-section" aria-label="GNMFA hero image"></section>
+  <!-- TOP SPONSORS BLOCK -->
+  <section class="sponsors" aria-label="Sponsors">
+    <div class="sponsors-inner">
+      <h2>Thank You to Our Sponsors</h2>
 
-    <!-- Sponsors block (directly under hero) -->
-    <section class="sponsors-wrap" aria-label="Sponsors">
-      <div class="sponsors-card">
-        <div class="sponsors-title">Thank you to our sponsors</div>
+      <div class="sponsor-grid" role="list">
+        <div class="sponsor-tile" role="listitem"><img id="sponsor1" alt="Sponsor logo 1"></div>
+        <div class="sponsor-tile" role="listitem"><img id="sponsor2" alt="Sponsor logo 2"></div>
+        <div class="sponsor-tile" role="listitem"><img id="sponsor3" alt="Sponsor logo 3"></div>
+      </div>
 
-        <div class="sponsors-grid" role="list">
-          <div class="sponsor-tile" role="listitem">
-            <img id="sponsor1" alt="Sponsor logo 1" />
+      <div class="thanks">We appreciate your support</div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION -->
+  <main class="page-wrap">
+    <div class="wide">
+      <section class="reg-card">
+
+        <!-- HEADER + TOP PAY -->
+        <div class="reg-header">
+          <div>
+            <h2 class="reg-title">Online Registration</h2>
+            <p class="reg-sub">
+              Registration fee is <strong>$150 per player</strong>.
+              After submitting the form, please complete payment.
+              <strong>CashApp and Venmo payments must include Player Name + Age Group.</strong>
+              Cash and Check are also accepted.
+            </p>
           </div>
-          <div class="sponsor-tile" role="listitem">
-            <img id="sponsor2" alt="Sponsor logo 2" />
-          </div>
-          <div class="sponsor-tile" role="listitem">
-            <img id="sponsor3" alt="Sponsor logo 3" />
+
+          <div class="pay-cta">
+            <a class="pay-btn cashapp" href="https://cash.app/$kephartSamuel" target="_blank" rel="noopener">
+              CashApp – $150
+            </a>
+            <a class="pay-btn venmo" href="https://venom.com/code?user_id=3124942983921664469&created=1770423291" target="_blank" rel="noopener">
+              Venmo – $150
+            </a>
+
+            <div class="pay-note">
+              <div><strong>Required Note:</strong></div>
+              <div>Player Name + Age Group</div>
+              <div><strong>Also Accepted:</strong> Cash or Check</div>
+            </div>
           </div>
         </div>
 
-        <div class="sponsors-thanks">We appreciate your support</div>
-      </div>
-    </section>
+        <!-- FORM -->
+        <div class="form-wrap">
+          <iframe
+            title="GNMFA Registration Form"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfgbBYwvDOM_4DM8P-tkcRN1DIWt2omDzg7Wa_0ozbfprITSg/viewform?embedded=true"
+            loading="lazy">
+          </iframe>
+        </div>
 
-    <!-- White footer strip (sits right under sponsors) -->
-    <div class="site-banner">
-      GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+        <!-- BOTTOM PAY -->
+        <div class="reg-footer-row">
+          <div class="pay-left">
+            <div><strong>Payment Options:</strong></div>
+            <div><strong>CashApp / Venmo:</strong> Include <strong>Player Name + Age Group</strong></div>
+            <div><strong>Cash / Check:</strong> Accepted (coordinate with coach or board)</div>
+          </div>
+
+          <div class="pay-right">
+            <a class="pay-btn cashapp" href="https://cash.app/$kephartSamuel" target="_blank" rel="noopener">
+              CashApp – $150
+            </a>
+            <a class="pay-btn venmo" href="https://venom.com/code?user_id=3124942983921664469&created=1770423291" target="_blank" rel="noopener">
+              Venmo – $150
+            </a>
+          </div>
+        </div>
+
+      </section>
     </div>
   </main>
+
+  <!-- WHITE FOOTER STRIP -->
+  <div class="site-banner">
+    GREENWOOD NEWPORT MIDGET FOOTBALL ASSOCIATION
+  </div>
 
   <script src="/Buffalos/assets/site.js"></script>
 
@@ -172,8 +336,8 @@
     // Rules:
     // - 2 images from sponsormain01..20 (no duplicates)
     // - 1 image from sponsor01..20 (no duplicates)
-    // - If only 1 sponsormain exists, fill with sponsor images
-    // - If any file doesn't exist, fall back to sponsormain01.png and sponsor01.png
+    // - If only 1 sponsormain exists, use 2 of the normal sponsor images
+    // - If any file doesn't exist, default to sponsormain01.png and sponsor01.png
     // =========================
 
     const BASE = "/Buffalos/assets/img/";
@@ -206,7 +370,6 @@
           return src;
         }
       }
-      // If none exist, use fallback
       return fallback;
     }
 
@@ -224,22 +387,17 @@
       const used = new Set();
       const picks = [];
 
-      // How many sponsormain files actually exist?
       const mainCount = await countExisting(mainList);
 
       if(mainCount >= 2){
-        // Pick 2 from sponsormain
         picks.push(await pickValid(mainList, used, FALLBACK_MAIN));
         picks.push(await pickValid(mainList, used, FALLBACK_MAIN));
-        // Pick 1 from sponsor
         picks.push(await pickValid(regList, used, FALLBACK));
       } else if(mainCount === 1){
-        // Pick 1 sponsormain, then 2 regular sponsors (no dupes)
         picks.push(await pickValid(mainList, used, FALLBACK_MAIN));
         picks.push(await pickValid(regList, used, FALLBACK));
         picks.push(await pickValid(regList, used, FALLBACK));
       } else {
-        // No sponsormain exists: use fallback main + 2 regular sponsors
         picks.push(FALLBACK_MAIN);
         used.add(FALLBACK_MAIN);
         picks.push(await pickValid(regList, used, FALLBACK));
@@ -250,9 +408,10 @@
       ids.forEach((id, i) => {
         const el = document.getElementById(id);
         if(!el) return;
+
         el.src = picks[i] || (i < 2 ? FALLBACK_MAIN : FALLBACK);
 
-        // Final guard: if it STILL fails, hard fallback by slot type
+        // Hard fallback if a picked image is missing at runtime
         el.onerror = () => {
           el.onerror = null;
           el.src = (i < 2) ? FALLBACK_MAIN : FALLBACK;
